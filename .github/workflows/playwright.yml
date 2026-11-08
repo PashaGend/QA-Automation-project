@@ -35,3 +35,35 @@ jobs:
           name: playwright-report
           path: mundial-qa-automation/playwright-report/
           retention-days: 30
+
+  publish:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout mundial-qa-automation
+        uses: actions/checkout@v4
+        with:
+          path: mundial-qa-automation
+
+      - name: Checkout Mondial2026
+        uses: actions/checkout@v4
+        with:
+          repository: PashaGend/WorldCup2026
+          path: Mondial2026
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push web image
+        working-directory: mundial-qa-automation
+        run: |
+          docker compose --env-file .env.docker build web
+          docker push ghcr.io/pashagend/mundial2026-web:latest
