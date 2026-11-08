@@ -1,0 +1,19 @@
+artifacts/
+.env
+.env.*
+# .env.docker holds only local-dev-only Docker Compose secrets (never reachable
+# outside the Compose network) — committed on purpose so `docker compose up`
+# works for anyone who clones the repo, with no setup step.
+!.env.docker
+supabase/.temp/
+supabase/.branches/
+node_modules/
+.idea/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+supabase/snippets/

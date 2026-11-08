@@ -1,0 +1,18 @@
+{
+  "name": "mundial-qa-automation",
+  "version": "1.0.0",
+  "description": "QA automation project testing [Mundial2026](https://pgmondial2026.netlify.app) (a World Cup 2026 score-prediction app: React + Vite + Supabase) from the outside. Covers UI (Playwright/Python), API, SQL data validation, AI-assisted bug reporting + visual regression (Claude), and CI/CD.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
+    "dotenv": "^18.0.9",
+    "pg": "^8.23.1"
+  }
+}

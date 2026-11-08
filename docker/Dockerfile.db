@@ -1,0 +1,13 @@
+# Plain postgres:17-alpine doesn't include pg-safeupdate (the extension that
+# blocks UPDATE/DELETE with no WHERE clause) — Supabase's own Postgres image
+# bundles it, which is why two of our regression tests assert on it. Compiled
+# from source here so the Docker environment matches that behavior exactly.
+FROM postgres:17-alpine
+
+RUN apk add --no-cache --virtual .build-deps git build-base postgresql17-dev \
+  && git clone --depth 1 https://github.com/eradman/pg-safeupdate.git /tmp/pg-safeupdate \
+  && cd /tmp/pg-safeupdate \
+  && make safeupdate.so \
+  && install -m 755 safeupdate.so "$(pg_config --pkglibdir)/" \
+  && apk del .build-deps \
+  && rm -rf /tmp/pg-safeupdate

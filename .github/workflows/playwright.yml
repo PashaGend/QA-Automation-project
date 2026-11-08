@@ -1,0 +1,37 @@
+name: QA Tests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mundial-qa-automation
+        uses: actions/checkout@v4
+        with:
+          path: mundial-qa-automation
+
+      - name: Checkout Mondial2026
+        uses: actions/checkout@v4
+        with:
+          repository: PashaGend/WorldCup2026
+          path: Mondial2026
+
+      - name: Start db, rest, gateway, web
+        working-directory: mundial-qa-automation
+        run: docker compose --env-file .env.docker up -d --build db rest gateway web
+
+      - name: Run tests
+        working-directory: mundial-qa-automation
+        run: docker compose --env-file .env.docker run --rm tests
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: mundial-qa-automation/playwright-report/
+          retention-days: 30
