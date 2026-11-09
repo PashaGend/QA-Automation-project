@@ -140,3 +140,34 @@ Two GitHub Actions workflows, one per repo, both running the same Docker Compose
   sibling, runs the same suite, and (only on `main`, only if tests pass) rebuilds and publishes the
   `web` image to `ghcr.io/pashagend/mundial2026-web`. Publishing lives here rather than in this
   repo's own workflow, since the image's content depends on the app's code, not the test suite's.
+
+Both workflows also trigger on `pull_request`, which is what makes branch protection (below) work —
+GitHub needs a check to run on the PR itself before it can gate merging on it.
+
+## Branch protection — broken code can't reach `main`
+
+Both repos' `main` branch has a protection rule (Settings → Branches): **require a pull request
+before merging**, and **require the `test` status check to pass before merging**. In practice this
+means:
+
+- You can no longer `git push origin main` directly — pushes to `main` are rejected.
+- Netlify deploys `Mondial2026`'s `main` branch automatically and immediately on every push to it,
+  with **no awareness of our CI** — it doesn't wait for or check our test results at all. So the gate
+  has to happen *before* anything lands on `main`, not after: if broken code can't be merged into
+  `main` in the first place, Netlify never sees it to deploy it.
+- "Require approvals" is deliberately **off** — this is a solo project, and GitHub won't let you
+  approve your own PR, so requiring it would just lock you out of merging your own work. The gate
+  here is the test suite, not a second human.
+
+### Shipping a change, step by step
+```bash
+git checkout -b my-change        # never commit straight to main anymore
+# ...edit files...
+git add -A && git commit -m "..."
+git push -u origin my-change
+```
+Then open a pull request on GitHub (`main` ← `my-change`). The `test` check runs automatically
+(same Docker Compose suite as always) and its status shows right on the PR. Once it's green, the
+**Merge** button becomes available — merging updates `main`, which is what actually triggers
+Netlify's deploy. If the check is red, GitHub blocks the merge outright; `main` — and therefore
+production — never sees that code.
