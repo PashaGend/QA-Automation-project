@@ -36,6 +36,15 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      // excluded here so a plain `npx playwright test` (what CI runs on every
+      // push, against the local stack) never touches production — smoke runs
+      // only when explicitly asked for via --project=smoke
+      testIgnore: '**/smoke/**',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'smoke',
+      testDir: './tests/smoke',
       use: { ...devices['Desktop Chrome'] },
     },
   ],

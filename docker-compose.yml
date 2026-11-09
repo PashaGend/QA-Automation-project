@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: qa-db
     build:
       context: .
       dockerfile: docker/Dockerfile.db
@@ -19,6 +20,7 @@ services:
       retries: 20
 
   rest:
+    container_name: qa-rest
     image: postgrest/postgrest:v12.2.3
     depends_on:
       db:
@@ -32,6 +34,7 @@ services:
       - '3000:3000'
 
   gateway:
+    container_name: qa-gateway
     image: nginx:alpine
     depends_on:
       - rest
@@ -41,6 +44,7 @@ services:
       - '8000:80'
 
   web:
+    container_name: qa-web
     # cloning only this repo? `docker compose pull web` grabs this prebuilt
     # image instead of needing ../Mondial2026 at all. Have both repos and want
     # your own local edits reflected? `docker compose build web` uses the
@@ -58,6 +62,7 @@ services:
       - '8080:80'
 
   tests:
+    container_name: qa-tests
     image: mcr.microsoft.com/playwright:v1.64.1-jammy
     profiles: ['tests']
     working_dir: /work
@@ -81,4 +86,26 @@ services:
       SUPABASE_ANON_KEY: ${ANON_JWT}
       DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@localhost:55432/postgres
       BASE_URL: http://localhost:8080
-    command: sh -c "npm ci && npx playwright test"
+    command: sh -c "npm ci && npx playwright test --project=chromium"
+
+  load:
+    container_name: qa-load
+    image: grafana/k6:0.54.0
+    profiles: ['load']
+    volumes:
+      - ./k6:/scripts:ro
+    depends_on:
+      - rest
+    environment:
+      REST_URL: http://rest:3000
+      SUPABASE_ANON_KEY: ${ANON_JWT}
+    command: run /scripts/user-flow-load.js
+
+  sql-editor:
+    container_name: qa-sql-editor
+    image: adminer:4.8.1
+    profiles: ['admin']
+    depends_on:
+      - db
+    ports:
+      - '8081:8080'
