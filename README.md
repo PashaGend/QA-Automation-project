@@ -71,7 +71,7 @@ and what anyone can run locally with no Supabase CLI install.
 | `web` | built from `docker/Dockerfile.app`, or pulled from `ghcr.io/pashagend/mundial2026-web` | The built Mondial2026 app, served statically |
 | `tests` | `mcr.microsoft.com/playwright` | Runs the full suite (`tests/api`, `tests/sql`, `tests/ui`) against the stack above |
 | `load` | `grafana/k6` | Optional load test — see below |
-| `sql-editor` | `adminer` | Optional GUI for the database (like Supabase Studio's SQL Editor, but lighter) |
+| `db-editor` | `adminer` | Optional GUI for the database (like Supabase Studio's SQL Editor, but lighter) |
 
 ### Bring up the environment
 ```bash
@@ -98,10 +98,10 @@ capacity figures.
 
 ### Inspect the database with a GUI
 ```bash
-docker compose --env-file .env.docker up -d sql-editor
+docker compose --env-file .env.docker up -d db-editor
 ```
 Open `http://localhost:8081` — System: PostgreSQL, Server: `db`, Username/Password: `postgres`,
-Database: `postgres`. Stop it when done: `docker compose stop sql-editor`.
+Database: `postgres`. Stop it when done: `docker compose stop db-editor`.
 
 ## Production smoke test
 

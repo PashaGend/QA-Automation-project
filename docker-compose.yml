@@ -101,8 +101,8 @@ services:
       SUPABASE_ANON_KEY: ${ANON_JWT}
     command: run /scripts/user-flow-load.js
 
-  sql-editor:
-    container_name: qa-sql-editor
+  db-editor:
+    container_name: qa-db-editor
     image: adminer:4.8.1
     profiles: ['admin']
     depends_on:
