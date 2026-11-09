@@ -140,3 +140,21 @@ Two GitHub Actions workflows, one per repo, both running the same Docker Compose
   sibling, runs the same suite, and (only on `main`, only if tests pass) rebuilds and publishes the
   `web` image to `ghcr.io/pashagend/mundial2026-web`. Publishing lives here rather than in this
   repo's own workflow, since the image's content depends on the app's code, not the test suite's.
+- **`.github/workflows/load.yml`** — runs the k6 load test once a day (`schedule: cron`) plus
+  `workflow_dispatch` for an on-demand run. Deliberately **not** a required check and doesn't run
+  on push/PR — load numbers aren't reliable enough on shared CI runners to gate a merge on, and a
+  real correctness bug shouldn't be blocked by an unrelated performance blip. GitHub emails
+  automatically on a failed scheduled run, same mechanism as the smoke test above.
+
+## AI-assisted bug filing (Jira)
+
+`scripts/file-jira-bug.mjs` files a bug directly in Jira (project `KAN`) given a title and
+description:
+```bash
+node scripts/file-jira-bug.mjs "<title>" "<description>"
+```
+Credentials (`JIRA_EMAIL`, `JIRA_API_TOKEN`, `JIRA_SITE_URL`, `JIRA_PROJECT_KEY`) live in `.env`
+(gitignored, never committed). Deliberately manual, not wired into CI: when a test fails, Claude
+Code drafts the report in conversation (same as any other task in this session — no separate paid
+API call), then this script files it. Keeps a human in the loop before a real ticket is created,
+and avoids spamming the board from flaky/transient CI failures.
