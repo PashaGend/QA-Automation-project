@@ -455,7 +455,22 @@
     </div>
     <div class="prose" style="margin-bottom:14px;">
       <p><b>זה לא חלק מההתקנה</b> — האפליקציה כבר רצה ועובדת בלי השלב הזה. זה מריץ את 41 הבדיקות האוטומטיות של הפרויקט (ממשק משתמש, API, ושאילתות SQL) מול האפליקציה שכבר רצה, בשביל מי שסקרן.</p>
-      <p>פותחים שורת פקודה בתיקיית <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> (ראו שלב 2 למעלה אם צריך תזכורת) ומריצים:</p>
+      <p><b>1.</b> פותחים שורת פקודה (בדיוק כמו בשלב 2 למעלה — Start, מקלידים PowerShell, Enter).</p>
+      <p><b>2.</b> עוברים לתיקיית הפרויקט. אם השתמשתם בקובץ הדאבל-קליק (<code style="font-family:'JetBrains Mono',monospace;">install.bat</code>/<code style="font-family:'JetBrains Mono',monospace;">install.command</code>), התיקייה <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> נוצרה **ליד** הקובץ ששמרתם — למשל אם שמרתם על שולחן העבודה:</p>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">1</span>
+          <code>cd $HOME\Desktop\mundial-qa-automation</code>
+          <button class="copy-btn" data-copy="cd $HOME\Desktop\mundial-qa-automation">העתק</button>
+        </div>
+      </div>
+    </div>
+    <p class="note">(שמרתם במקום אחר? אותו רעיון — <code style="font-family:'JetBrains Mono',monospace;">cd</code> לאותה תיקייה, ואז <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation\</code>. עשיתם את ה-<code style="font-family:'JetBrains Mono',monospace;">git clone</code> בעצמכם בשיטה הידנית למטה? זו אותה תיקייה שנכנסתם אליה שם עם <code style="font-family:'JetBrains Mono',monospace;">cd</code>.)</p>
+    <div class="prose" style="margin:14px 0;">
+      <p><b>3.</b> מריצים:</p>
     </div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
@@ -467,7 +482,7 @@
         </div>
       </div>
     </div>
-    <p class="note">בסוף הריצה אמור להופיע <code style="font-family:'JetBrains Mono',monospace;">41 passed</code> (ירוק). אם משהו נכשל — זה לא קשור להתקנה עצמה, כדאי לבדוק שהאפליקציה עדיין רצה ב-localhost:8080.</p>
+    <p class="note"><b>4.</b> מה לצפות לראות: כמה שניות של טקסט הכנה, ואז רשימה של שמות בדיקות שרצות אחת-אחת (למשל <code style="font-family:'JetBrains Mono',monospace;">[1/41] tests\ui\login.spec.ts ...</code>) — זה לוקח בערך 15–30 שניות. בסוף אמורה להופיע שורה ירוקה: <code style="font-family:'JetBrains Mono',monospace;">41 passed</code>. אם משהו נכשל (אדום) — זה לא קשור להתקנה עצמה; כדאי לבדוק קודם שהאפליקציה עדיין נגישה ב-localhost:8080.</p>
   </div>
 
   <div class="footnote">
