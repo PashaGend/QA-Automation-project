@@ -23,18 +23,22 @@ a local, disposable backend. To run the full test suite (41 tests):
 `docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
 no hidden manual step.
 
-**Starting from nothing, on Windows?** `install.ps1` at the repo root does the entire thing in one
-file: installs Git/Node.js/Docker Desktop if missing, starts Docker and waits for it, clones both
-repos, brings up the environment, and opens the app in your browser.
-```powershell
-powershell -ExecutionPolicy Bypass -File .\install.ps1
-```
-Download just this one file (no git needed first) from
-`https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.ps1` (once this is
-merged — for now, the `fix/local-dotenv-and-db-cleanup` branch), save it
-anywhere, and run the command above from that folder. Safe to re-run. The one thing it can't script
-around: if Windows has never had virtualization (WSL2) enabled before, Docker needs a one-time
-restart — the script detects that and tells you to restart and run it again.
+**Starting from nothing, on Windows?** `install.bat` at the repo root does the entire thing in one
+file, no terminal needed: installs Git/Node.js/Docker Desktop if missing, starts Docker and waits
+for it, clones both repos next to itself, brings up the environment, and opens the app in your
+browser. Download it (no git needed first) from
+`https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat` (once this is
+merged — for now, the `fix/local-dotenv-and-db-cleanup` branch) and double-click it. Windows will
+likely show an unsigned-file warning (`More info` → `Run anyway`) and then a UAC prompt (`Yes`) —
+normal for any downloaded, unsigned script. Safe to re-run. `install.ps1` is the exact same script
+without the double-click wrapper, for running from PowerShell directly. The one thing neither can
+script around: if Windows has never had virtualization (WSL2) enabled before, Docker needs a
+one-time restart — the script detects that and tells you to restart and run it again.
+
+(`install.bat` is a polyglot — valid as both a batch file and a PowerShell script in one file, via
+a `<# : ... #>` header cmd.exe reads as a tiny launcher and PowerShell reads as a comment. Verified
+end to end: the batch-to-PowerShell handoff, the elevation relaunch, and `$scriptPath` resolving
+correctly inside the re-invoked content.)
 
 `scripts\install-prereqs.ps1` is the same installer step alone (Git/Node/Docker, no cloning or
 running), for anyone who'd rather do the rest themselves.

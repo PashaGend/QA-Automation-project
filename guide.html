@@ -267,30 +267,16 @@
 
   <div class="final" style="margin-bottom:40px;">
     <span class="icon">⚡</span>
-    <h2>הדרך הכי מהירה — קובץ אחד</h2>
+    <h2>הדרך הכי מהירה — קובץ אחד, דאבל-קליק</h2>
     <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
   </div>
   <div class="prose" style="margin-bottom:14px;">
-    <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1 ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
-    <p><b>2.</b> פותחים PowerShell (ראו שלב 2 למטה אם לא בטוחים איך), עוברים לתיקייה ששמרתם בה, למשל:</p>
+    <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
+    <p><b>2.</b> דאבל-קליק על הקובץ. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
+    <p><b>3.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". מפה הכל אוטומטי.</p>
   </div>
-  <div class="term">
-    <div class="term-bar"><span></span><span></span><span></span></div>
-    <div class="term-lines">
-      <div class="term-line">
-        <span class="num">1</span>
-        <code>cd $HOME\Desktop</code>
-        <button class="copy-btn" data-copy="cd $HOME\Desktop">העתק</button>
-      </div>
-      <div class="term-line">
-        <span class="num">2</span>
-        <code>powershell -ExecutionPolicy Bypass -File .\install.ps1</code>
-        <button class="copy-btn" data-copy="powershell -ExecutionPolicy Bypass -File .\install.ps1">העתק</button>
-      </div>
-    </div>
-  </div>
-  <p class="note">ייפתח חלון הרשאות של Windows (UAC) — לוחצים "כן". מפה הכל אוטומטי: התקנות, שכפול, הרמה, ופתיחת הדפדפן בסוף. אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים.</p>
-  <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב את אותה פקודה.</p>
+  <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים. מעדיפים להריץ מתוך PowerShell ולא דאבל-קליק? יש גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1</a> — אותו קובץ בדיוק, בלי העטיפה של דאבל-קליק.</p>
+  <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב דאבל-קליק על אותו קובץ.</p>
 
   <hr class="divider">
 
