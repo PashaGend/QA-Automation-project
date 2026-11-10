@@ -490,9 +490,36 @@
     <p class="note"><b>4.</b> מה לצפות לראות: כמה שניות של טקסט הכנה, ואז רשימה של שמות בדיקות שרצות אחת-אחת (למשל <code style="font-family:'JetBrains Mono',monospace;">[1/41] tests\ui\login.spec.ts ...</code>) — זה לוקח בערך 15–30 שניות. בסוף אמורה להופיע שורה ירוקה: <code style="font-family:'JetBrains Mono',monospace;">41 passed</code>. אם משהו נכשל (אדום) — זה לא קשור להתקנה עצמה; כדאי לבדוק קודם שהאפליקציה עדיין נגישה ב-localhost:8080.</p>
   </div>
 
+  <div class="bonus">
+    <div class="bonus-head">
+      <span class="bonus-badge">בונוס · אופציונלי</span>
+      <h2>רוצים להסיר הכל בסוף?</h2>
+    </div>
+    <div class="prose" style="margin-bottom:14px;">
+      <p>יש קובץ מקביל לקובץ ההתקנה, שמבטל אותו: מוריד containers/volumes/images של הפרויקט הזה בלבד. <b>לא</b> מסיר את Git, Node.js או Docker Desktop עצמם — אלה כלים משותפים שאולי תצטרכו למשהו אחר.</p>
+      <p><b>1.</b> מורידים אותו בדיוק כמו קובץ ההתקנה (לוחצים → <kbd>Ctrl+S</kbd>/<kbd>Cmd+S</kbd> → מוודאים שהשם נשאר מדויק):</p>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">🪟</span>
+          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">uninstall.bat →</a>
+        </div>
+        <div class="term-line">
+          <span class="num">🍎</span>
+          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">uninstall.command →</a>
+        </div>
+      </div>
+    </div>
+    <div class="prose" style="margin:14px 0;">
+      <p><b>2.</b> שומרים אותו <b>באותה תיקייה</b> שבה שמרתם את קובץ ההתקנה בשלב 1 (ליד <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> ו-<code style="font-family:'JetBrains Mono',monospace;">Mondial2026</code>) — לא בתוך אחת מהתיקיות עצמן.</p>
+      <p><b>3.</b> דאבל-קליק (ב-Mac: אותו תהליך "Open" כמו בהתקנה). נשאל אם למחוק גם את תיקיות הפרויקט עצמן — ברירת המחדל היא <b>לא</b> (שומר על שינויים מקומיים שעשיתם). אם לא נגעתם בקוד, אפשר לענות כן.</p>
+    </div>
+  </div>
+
   <div class="footnote">
-    לעצור הכל זמנית: <code>docker compose down</code> (מריצים מתוך אותה תיקייה).<br>
-    רוצים להסיר הכל לגמרי? דאבל-קליק על <code>uninstall.bat</code> (או <code>uninstall.command</code> ב-Mac) — נמצא באותה תיקייה כמו קובץ ההתקנה. לא מסיר את Git/Node/Docker עצמם.<br>
+    לעצור הכל זמנית בלי להסיר כלום: <code>docker compose down</code> (מריצים מתוך אותה תיקייה).<br>
     פרטים טכניים נוספים — ב-README של הפרויקט ב-GitHub.
   </div>
 
