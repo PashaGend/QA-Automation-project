@@ -246,7 +246,23 @@
     <div class="section-head"><h2>ידני</h2></div>
     <p class="prose">דרושים מראש (הקובץ האחד למעלה מתקין אותם לבד — כאן לא): <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> ·
       <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> (LTS) ·
-      <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (צריך להישאר פתוח ברקע).</p>
+      <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (צריך להישאר פתוח ברקע). או בשורת פקודה:</p>
+    <div class="term" style="margin-bottom:12px;">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">🪟</span>
+          <code>winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop</code>
+          <button class="copy-btn" data-copy="winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop">העתק</button>
+        </div>
+        <div class="term-line">
+          <span class="num">🍎</span>
+          <code>brew install git node && brew install --cask docker</code>
+          <button class="copy-btn" data-copy="brew install git node && brew install --cask docker">העתק</button>
+        </div>
+      </div>
+    </div>
+    <p class="prose">(<code>winget</code> דורש Administrator; <code>brew</code> דורש <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> מותקן מראש. ר' גם <code>scripts/install-prereqs.ps1</code> בפרויקט.)</p>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
