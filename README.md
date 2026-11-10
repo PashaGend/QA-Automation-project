@@ -23,9 +23,21 @@ a local, disposable backend. To run the full test suite (41 tests):
 `docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
 no hidden manual step.
 
-Don't have Docker Desktop / Node.js yet, and you're on Windows? `scripts\install-prereqs.ps1`
-installs both via `winget` (run as Administrator). Docker Desktop still needs opening by hand once
-afterward — its first-run license screen and WSL2 setup can't be scripted around.
+**Starting from nothing, on Windows?** `install.ps1` at the repo root does the entire thing in one
+file: installs Git/Node.js/Docker Desktop if missing, starts Docker and waits for it, clones both
+repos, brings up the environment, and opens the app in your browser.
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+Download just this one file (no git needed first) from
+`https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.ps1` (once this is
+merged — for now, the `fix/local-dotenv-and-db-cleanup` branch), save it
+anywhere, and run the command above from that folder. Safe to re-run. The one thing it can't script
+around: if Windows has never had virtualization (WSL2) enabled before, Docker needs a one-time
+restart — the script detects that and tells you to restart and run it again.
+
+`scripts\install-prereqs.ps1` is the same installer step alone (Git/Node/Docker, no cloning or
+running), for anyone who'd rather do the rest themselves.
 
 A non-technical walkthrough with copy-paste buttons also exists for this Quickstart — ask in a
 Claude Code session in this repo, or see `guide.html`.

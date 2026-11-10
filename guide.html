@@ -265,6 +265,40 @@
     תוכנה שבה כותבים פקודות בטקסט במקום ללחוץ על כפתורים. נשמע מפחיד — בפועל: מעתיקים טקסט, מדביקים, לוחצים Enter. זהו כל הסוד.
   </div>
 
+  <div class="final" style="margin-bottom:40px;">
+    <span class="icon">⚡</span>
+    <h2>הדרך הכי מהירה — קובץ אחד</h2>
+    <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
+  </div>
+  <div class="prose" style="margin-bottom:14px;">
+    <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1 ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
+    <p><b>2.</b> פותחים PowerShell (ראו שלב 2 למטה אם לא בטוחים איך), עוברים לתיקייה ששמרתם בה, למשל:</p>
+  </div>
+  <div class="term">
+    <div class="term-bar"><span></span><span></span><span></span></div>
+    <div class="term-lines">
+      <div class="term-line">
+        <span class="num">1</span>
+        <code>cd $HOME\Desktop</code>
+        <button class="copy-btn" data-copy="cd $HOME\Desktop">העתק</button>
+      </div>
+      <div class="term-line">
+        <span class="num">2</span>
+        <code>powershell -ExecutionPolicy Bypass -File .\install.ps1</code>
+        <button class="copy-btn" data-copy="powershell -ExecutionPolicy Bypass -File .\install.ps1">העתק</button>
+      </div>
+    </div>
+  </div>
+  <p class="note">ייפתח חלון הרשאות של Windows (UAC) — לוחצים "כן". מפה הכל אוטומטי: התקנות, שכפול, הרמה, ופתיחת הדפדפן בסוף. אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים.</p>
+  <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב את אותה פקודה.</p>
+
+  <hr class="divider">
+
+  <div class="hero" style="margin-bottom:30px;">
+    <h1 style="font-size:22px;">או: שלב-שלב, בעצמכם</h1>
+    <p>אותו תוצאה בדיוק, רק כל שלב בנפרד</p>
+  </div>
+
   <div class="step">
     <div class="step-head">
       <span class="step-num">1</span>
@@ -291,7 +325,6 @@
       </div>
     </div>
     <p class="note">כל אחת מותקנת כמו תוכנה רגילה: מורידים, פותחים, לוחצים "הבא" עד הסוף. <b>רק את Docker Desktop צריך לפתוח ולהשאיר פתוח</b> — השתיים האחרות עובדות ברקע אוטומטית.</p>
-    <p class="note">🚀 <b>יש לכם כבר Git?</b> אפשר לדלג על ההתקנות הידניות: אחרי שלב 3 למטה (ה-clone), יש בפרויקט סקריפט <code style="font-family:'JetBrains Mono',monospace;font-size:12px;">scripts\install-prereqs.ps1</code> שמתקין את Node.js ו-Docker Desktop לבד (מריצים אותו כ-Administrator). עדיין צריך לפתוח את Docker Desktop ידנית פעם אחת בסוף.</p>
   </div>
 
   <div class="step">
