@@ -65,6 +65,30 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 
 Install-IfMissing 'git' 'Git.Git' 'Git'
 Install-IfMissing 'node' 'OpenJS.NodeJS.LTS' 'Node.js'
+
+# Docker needs WSL2 to run on Windows. If this machine never had it set up,
+# enabling it needs a one-time restart - check that up front so it's clear
+# immediately, rather than installing Docker Desktop first and only finding
+# out after its own 3-minute startup timeout below.
+$wslReady = $true
+try {
+    wsl --status *> $null
+    if ($LASTEXITCODE -ne 0) { $wslReady = $false }
+} catch {
+    $wslReady = $false
+}
+
+if (-not $wslReady) {
+    Write-Host "Setting up WSL2 (Docker needs it)..." -ForegroundColor Cyan
+    try { wsl --install --no-distro } catch { wsl --install }
+    Write-Host ""
+    Write-Host "WSL2 just got enabled for the first time - Windows needs a restart" -ForegroundColor Yellow
+    Write-Host "before Docker can run. Restart your computer, then run this same" -ForegroundColor Yellow
+    Write-Host "file again - it picks up right where it left off." -ForegroundColor Yellow
+    Read-Host "Press Enter to close"
+    exit 1
+}
+
 Install-IfMissing 'docker' 'Docker.DockerDesktop' 'Docker Desktop'
 Refresh-Path
 
