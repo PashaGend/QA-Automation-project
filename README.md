@@ -40,7 +40,15 @@ a `<# : ... #>` header cmd.exe reads as a tiny launcher and PowerShell reads as 
 end to end: the batch-to-PowerShell handoff, the elevation relaunch, and `$scriptPath` resolving
 correctly inside the re-invoked content.)
 
-`scripts\install-prereqs.ps1` is the same installer step alone (Git/Node/Docker, no cloning or
+**Same thing, on a Mac?** `install.command` does the same — Homebrew instead of `winget`, otherwise
+identical. `.command` files are natively double-clickable in Finder (no polyglot trick needed).
+Download from `.../install.command`, then in Terminal once: `chmod +x ~/Desktop/install.command`
+(a browser download doesn't carry the executable bit the way `git clone` does), then double-click —
+macOS will likely refuse the first run as unsigned (right-click → Open → Open to bypass, once).
+*Honest limit: this was written and syntax-checked (`bash -n`), but never actually run on a Mac —
+none was available while building it.*
+
+`scripts\install-prereqs.ps1` is the Windows installer step alone (Git/Node/Docker, no cloning or
 running), for anyone who'd rather do the rest themselves.
 
 A non-technical walkthrough with copy-paste buttons also exists for this Quickstart — ask in a

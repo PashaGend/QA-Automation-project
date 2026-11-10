@@ -213,6 +213,25 @@
   .note { font-size: 13px; color: var(--fg-dim); margin-top: 10px; line-height: 1.7; }
   .note b { color: var(--fg); }
 
+  .os-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+  .os-tab {
+    flex: 1 1 0;
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--fg-dim);
+    cursor: pointer;
+  }
+  .os-tab.active {
+    background: var(--accent);
+    color: #04140d;
+    border-color: var(--accent);
+  }
+
   .divider { border: none; border-top: 1px dashed var(--card-border); margin: 44px 0; }
 
   .final {
@@ -265,18 +284,47 @@
     תוכנה שבה כותבים פקודות בטקסט במקום ללחוץ על כפתורים. נשמע מפחיד — בפועל: מעתיקים טקסט, מדביקים, לוחצים Enter. זהו כל הסוד.
   </div>
 
-  <div class="final" style="margin-bottom:40px;">
+  <div class="final" style="margin-bottom:24px;">
     <span class="icon">⚡</span>
     <h2>הדרך הכי מהירה — קובץ אחד, דאבל-קליק</h2>
     <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
   </div>
-  <div class="prose" style="margin-bottom:14px;">
-    <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
-    <p><b>2.</b> דאבל-קליק על הקובץ. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
-    <p><b>3.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". מפה הכל אוטומטי.</p>
+
+  <div class="os-tabs">
+    <button class="os-tab active" data-os="win">🪟 Windows</button>
+    <button class="os-tab" data-os="mac">🍎 Mac</button>
   </div>
-  <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים. מעדיפים להריץ מתוך PowerShell ולא דאבל-קליק? יש גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1</a> — אותו קובץ בדיוק, בלי העטיפה של דאבל-קליק.</p>
-  <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב דאבל-קליק על אותו קובץ.</p>
+
+  <div class="os-panel" data-os-panel="win">
+    <div class="prose" style="margin-bottom:14px;">
+      <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
+      <p><b>2.</b> דאבל-קליק על הקובץ. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
+      <p><b>3.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". מפה הכל אוטומטי.</p>
+    </div>
+    <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים. מעדיפים להריץ מתוך PowerShell ולא דאבל-קליק? יש גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1</a> — אותו קובץ בדיוק, בלי העטיפה של דאבל-קליק.</p>
+    <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב דאבל-קליק על אותו קובץ.</p>
+  </div>
+
+  <div class="os-panel" data-os-panel="mac" hidden>
+    <div class="prose" style="margin-bottom:14px;">
+      <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.command ←</a> (קליק ימני → "Save Link As" → שומרים איפשהו, למשל שולחן העבודה)</p>
+      <p><b>2.</b> פותחים Terminal (⌘+רווח, מקלידים Terminal, Enter) ומריצים <b>פעם אחת בלבד</b>, כדי לתת הרשאת הרצה (קבצים שיורדים מהאינטרנט לא מקבלים אותה אוטומטית):</p>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">1</span>
+          <code>chmod +x ~/Desktop/install.command</code>
+          <button class="copy-btn" data-copy="chmod +x ~/Desktop/install.command">העתק</button>
+        </div>
+      </div>
+    </div>
+    <div class="prose" style="margin:14px 0;">
+      <p><b>3.</b> דאבל-קליק על הקובץ ב-Finder. macOS כנראה יחסום בפעם הראשונה ("cannot be opened because it is from an unidentified developer") — קליק ימני על הקובץ → <b>Open</b> → <b>Open</b> שוב באזהרה. מפה הכל אוטומטי (ייתכן שיבקש את הסיסמה שלכם בשביל Homebrew).</p>
+    </div>
+    <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים.</p>
+  </div>
 
   <hr class="divider">
 
@@ -385,6 +433,16 @@
 </div>
 
 <script>
+  document.querySelectorAll('.os-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const os = tab.getAttribute('data-os');
+      document.querySelectorAll('.os-tab').forEach(t => t.classList.toggle('active', t === tab));
+      document.querySelectorAll('.os-panel').forEach(p => {
+        p.hidden = p.getAttribute('data-os-panel') !== os;
+      });
+    });
+  });
+
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
       const text = btn.getAttribute('data-copy');
