@@ -23,6 +23,13 @@ a local, disposable backend. To run the full test suite (41 tests):
 `docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
 no hidden manual step.
 
+Don't have Docker Desktop / Node.js yet, and you're on Windows? `scripts\install-prereqs.ps1`
+installs both via `winget` (run as Administrator). Docker Desktop still needs opening by hand once
+afterward — its first-run license screen and WSL2 setup can't be scripted around.
+
+A non-technical walkthrough with copy-paste buttons also exists for this Quickstart — ask in a
+Claude Code session in this repo, or see `guide.html`.
+
 ## Local environment (Docker Compose)
 
 We run the app against a **local, disposable backend** (Postgres + REST API), never against

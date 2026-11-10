@@ -1,0 +1,390 @@
+<title>מריצים מונדיאל 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --bg-soft: #ffffff;
+    --fg: #15192b;
+    --fg-dim: #5b6274;
+    --card: #ffffff;
+    --card-border: rgba(15,22,33,0.08);
+    --accent: #0a7a4a;
+    --accent-soft: #e4f5ec;
+    --accent-strong: #065f46;
+    --shadow: 0 8px 24px rgba(15,22,33,0.06);
+    --term-bg: #10131f;
+    --term-fg: #c9f7d8;
+    --term-border: #1a1a2e;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11131d;
+      --bg-soft: #171a28;
+      --fg: #eef1f7;
+      --fg-dim: #9aa1b4;
+      --card: #1a1d2c;
+      --card-border: rgba(255,255,255,0.08);
+      --accent: #34d399;
+      --accent-soft: rgba(52,211,153,0.12);
+      --accent-strong: #6ee7b7;
+      --shadow: 0 8px 28px rgba(0,0,0,0.35);
+      --term-bg: #0a0c14;
+      --term-fg: #86efac;
+      --term-border: #2a2e42;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #11131d;
+    --bg-soft: #171a28;
+    --fg: #eef1f7;
+    --fg-dim: #9aa1b4;
+    --card: #1a1d2c;
+    --card-border: rgba(255,255,255,0.08);
+    --accent: #34d399;
+    --accent-soft: rgba(52,211,153,0.12);
+    --accent-strong: #6ee7b7;
+    --shadow: 0 8px 28px rgba(0,0,0,0.35);
+    --term-bg: #0a0c14;
+    --term-fg: #86efac;
+    --term-border: #2a2e42;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background:
+      radial-gradient(1200px 500px at 50% -10%, var(--accent-soft), transparent 60%),
+      var(--bg);
+    color: var(--fg);
+    font-family: 'Heebo', sans-serif;
+    direction: rtl;
+    padding-inline: max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));
+    padding-block: 32px 60px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  .hero { text-align: center; margin-bottom: 44px; }
+  .hero .ball { font-size: 44px; display: block; margin-bottom: 10px; }
+  .hero h1 {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 5vw, 38px);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .hero p { color: var(--fg-dim); font-size: 16px; margin: 0; line-height: 1.6; }
+
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--fg);
+    margin-bottom: 40px;
+  }
+  .callout b { color: var(--accent-strong); }
+
+  .step {
+    margin-bottom: 36px;
+  }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    flex: 0 0 auto;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #04140d;
+    font-weight: 900;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-head h2 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .cards { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+  }
+  .card .icon { font-size: 22px; margin-bottom: 6px; display: block; }
+  .card h3 { font-size: 15px; margin: 0 0 4px; font-weight: 700; }
+  .card p { font-size: 13px; color: var(--fg-dim); margin: 0 0 10px; line-height: 1.5; }
+  .card a {
+    font-size: 13px; font-weight: 700; color: var(--accent-strong);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .card a:hover { text-decoration: underline; }
+
+  .prose {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--fg);
+  }
+  .prose p { margin: 0 0 10px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose kbd {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-size: 12.5px;
+  }
+
+  .term {
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 12px;
+  }
+  .term-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--term-border);
+  }
+  .term-bar span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .term-bar span:nth-child(1) { background: #ff5f57; }
+  .term-bar span:nth-child(2) { background: #febc2e; }
+  .term-bar span:nth-child(3) { background: #28c840; }
+  .term-lines { padding: 6px 0; }
+  .term-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    direction: ltr;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--term-fg);
+  }
+  .term-line + .term-line { border-top: 1px dashed var(--term-border); }
+  .term-line .num {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    background: rgba(52,211,153,0.15);
+    color: var(--term-fg);
+    font-weight: 700;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Heebo', sans-serif;
+  }
+  .term-line code { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+  .copy-btn {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--term-border);
+    color: var(--term-fg);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-family: 'Heebo', sans-serif;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: rgba(52,211,153,0.1); }
+  .copy-btn.copied { background: var(--accent); color: #04140d; border-color: var(--accent); }
+
+  .note { font-size: 13px; color: var(--fg-dim); margin-top: 10px; line-height: 1.7; }
+  .note b { color: var(--fg); }
+
+  .divider { border: none; border-top: 1px dashed var(--card-border); margin: 44px 0; }
+
+  .final {
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+    border-radius: 18px;
+    padding: 26px 20px;
+    color: #04140d;
+    box-shadow: var(--shadow);
+  }
+  .final .icon { font-size: 30px; display: block; margin-bottom: 6px; }
+  .final h2 { font-size: 19px; margin: 0 0 6px; font-weight: 900; }
+  .final p { margin: 0; font-size: 14px; opacity: 0.85; }
+  .final a.url {
+    display: inline-block; margin-top: 12px;
+    background: #04140d; color: #d8fbe6;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    direction: ltr;
+  }
+
+  .footnote {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--fg-dim);
+    margin-top: 30px;
+    line-height: 1.8;
+  }
+  .footnote code {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--accent-soft);
+    border-radius: 5px;
+    padding: 1px 6px;
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="ball">⚽</span>
+    <h1>מריצים את מונדיאל 2026 אצלכם במחשב</h1>
+    <p>מדריך מלא, צעד-צעד — גם אם מעולם לא פתחתם שורת פקודה בחיים</p>
+  </div>
+
+  <div class="callout">
+    <b>מה זה בכלל "שורת פקודה"?</b><br>
+    תוכנה שבה כותבים פקודות בטקסט במקום ללחוץ על כפתורים. נשמע מפחיד — בפועל: מעתיקים טקסט, מדביקים, לוחצים Enter. זהו כל הסוד.
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">1</span>
+      <h2>שלוש התקנות חד-פעמיות</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="icon">🐳</span>
+        <h3>Docker Desktop</h3>
+        <p>התוכנה שמריצה את כל הפרויקט, בלי להתקין שום דבר אחר על המחשב. חייבת להישאר פתוחה ברקע.</p>
+        <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">להורדה ←</a>
+      </div>
+      <div class="card">
+        <span class="icon">🟢</span>
+        <h3>Node.js</h3>
+        <p>מריץ קטע קוד קטן אחד שהפרויקט צריך. בוחרים בגרסה המומלצת (LTS).</p>
+        <a href="https://nodejs.org/" target="_blank" rel="noopener">להורדה ←</a>
+      </div>
+      <div class="card">
+        <span class="icon">📦</span>
+        <h3>Git</h3>
+        <p>מעתיק את הקוד מ-GitHub למחשב. אפשר ללחוץ "הבא" בכל המסכים בלי לשנות כלום.</p>
+        <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">להורדה ←</a>
+      </div>
+    </div>
+    <p class="note">כל אחת מותקנת כמו תוכנה רגילה: מורידים, פותחים, לוחצים "הבא" עד הסוף. <b>רק את Docker Desktop צריך לפתוח ולהשאיר פתוח</b> — השתיים האחרות עובדות ברקע אוטומטית.</p>
+    <p class="note">🚀 <b>יש לכם כבר Git?</b> אפשר לדלג על ההתקנות הידניות: אחרי שלב 3 למטה (ה-clone), יש בפרויקט סקריפט <code style="font-family:'JetBrains Mono',monospace;font-size:12px;">scripts\install-prereqs.ps1</code> שמתקין את Node.js ו-Docker Desktop לבד (מריצים אותו כ-Administrator). עדיין צריך לפתוח את Docker Desktop ידנית פעם אחת בסוף.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">2</span>
+      <h2>פותחים שורת פקודה</h2>
+    </div>
+    <div class="prose">
+      <p>ב-Windows: לוחצים על כפתור <b>Start</b>, מקלידים <kbd>PowerShell</kbd>, ולוחצים Enter על התוצאה שמופיעה. ייפתח חלון כהה עם טקסט — זה הוא.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">3</span>
+      <h2>מעתיקים-מדביקים שלוש שורות</h2>
+    </div>
+    <div class="prose">
+      <p>אחת-אחת: לוחצים על כפתור <b>העתק</b>, עוברים לחלון השחור, מדביקים (<kbd>Ctrl+V</kbd> או קליק ימני → Paste), לוחצים Enter, מחכים שהשורה הבאה של ">" תופיע, וממשיכים לפקודה הבאה.</p>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">1</span>
+          <code>git clone https://github.com/PashaGend/mundial-qa-automation.git</code>
+          <button class="copy-btn" data-copy="git clone https://github.com/PashaGend/mundial-qa-automation.git">העתק</button>
+        </div>
+        <div class="term-line">
+          <span class="num">2</span>
+          <code>cd mundial-qa-automation</code>
+          <button class="copy-btn" data-copy="cd mundial-qa-automation">העתק</button>
+        </div>
+        <div class="term-line">
+          <span class="num">3</span>
+          <code>npm run setup</code>
+          <button class="copy-btn" data-copy="npm run setup">העתק</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">4</span>
+      <h2>מה קורה עכשיו</h2>
+    </div>
+    <div class="prose">
+      <p>המון טקסט יתחיל לרוץ במסך — <b>זה תקין.</b> זה מוריד ובונה הכל אוטומטית: בפעם הראשונה לוקח כ-2–3 דקות.</p>
+      <p>לא נוגעים בכלום ולא סוגרים את החלון עד שהטקסט מפסיק לזוז ומופיעה שוב שורת פקודה ריקה.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">5</span>
+      <h2>פותחים את האפליקציה</h2>
+    </div>
+    <div class="final">
+      <span class="icon">✅</span>
+      <h2>האפליקציה רצה!</h2>
+      <p>פותחים דפדפן וגולשים לכתובת הזו — עותק מקומי מלא, לא נוגע בשום דבר אמיתי</p>
+      <a class="url" href="http://localhost:8080" target="_blank" rel="noopener">localhost:8080</a>
+    </div>
+  </div>
+
+  <div class="footnote">
+    לעצור הכל בסוף: <code>docker compose down</code> (מריצים מתוך אותה תיקייה).<br>
+    פרטים טכניים נוספים — ב-README של הפרויקט ב-GitHub.
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e2) {}
+        document.body.removeChild(ta);
+      }
+      const original = btn.textContent;
+      btn.textContent = 'הועתק!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+</script>
