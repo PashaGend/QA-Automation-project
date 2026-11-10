@@ -256,6 +256,24 @@
     direction: ltr;
   }
 
+  .bonus {
+    border: 1.5px dashed var(--card-border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 36px;
+  }
+  .bonus-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .bonus-badge {
+    flex: 0 0 auto;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .bonus-head h2 { font-size: 18px; font-weight: 700; margin: 0; }
+
   .footnote {
     text-align: center;
     font-size: 12.5px;
@@ -289,7 +307,7 @@
     <h2>הדרך הכי מהירה — קובץ אחד, דאבל-קליק</h2>
     <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
   </div>
-  <p class="note" style="text-align:center;margin-bottom:28px;">👇 הדרך הזו <b>מחליפה לגמרי</b> את כל 5 השלבים "שלב-שלב" למטה — בסופה האפליקציה כבר רצה ב-<code style="font-family:'JetBrains Mono',monospace;">localhost:8080</code>, בדיוק כמו בסוף שלב 5. <b>קוראים/עושים רק אחד מהשניים, לא את שניהם.</b> שלב 6 בסוף (איך מריצים את הבדיקות) רלוונטי בכל מקרה, לא משנה באיזו דרך התחלתם.</p>
+  <p class="note" style="text-align:center;margin-bottom:28px;">👇 הדרך הזו <b>מחליפה לגמרי</b> את כל 5 השלבים "שלב-שלב" למטה — בסופה האפליקציה כבר רצה ב-<code style="font-family:'JetBrains Mono',monospace;">localhost:8080</code>, בדיוק כמו בסוף שלב 5. <b>קוראים/עושים רק אחד מהשניים, לא את שניהם.</b> הבונוס בסוף המדריך (איך מריצים את הבדיקות) רלוונטי בכל מקרה, לא משנה באיזו דרך התחלתם.</p>
 
   <div class="os-tabs">
     <button class="os-tab active" data-os="win">🪟 Windows</button>
@@ -428,13 +446,15 @@
     </div>
   </div>
 
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">6</span>
+  <hr class="divider">
+
+  <div class="bonus">
+    <div class="bonus-head">
+      <span class="bonus-badge">בונוס · אופציונלי</span>
       <h2>רוצים גם להריץ את הבדיקות?</h2>
     </div>
     <div class="prose" style="margin-bottom:14px;">
-      <p>אופציונלי — לא חובה כדי שהאפליקציה תעבוד. זה מריץ את 41 הבדיקות האוטומטיות של הפרויקט (ממשק משתמש, API, ושאילתות SQL) מול האפליקציה שכבר רצה.</p>
+      <p><b>זה לא חלק מההתקנה</b> — האפליקציה כבר רצה ועובדת בלי השלב הזה. זה מריץ את 41 הבדיקות האוטומטיות של הפרויקט (ממשק משתמש, API, ושאילתות SQL) מול האפליקציה שכבר רצה, בשביל מי שסקרן.</p>
       <p>פותחים שורת פקודה בתיקיית <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> (ראו שלב 2 למעלה אם צריך תזכורת) ומריצים:</p>
     </div>
     <div class="term">
