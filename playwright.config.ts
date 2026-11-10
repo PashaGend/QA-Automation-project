@@ -3,10 +3,17 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
+ *
+ * Without this, a local run (VS Code extension, plain `npx playwright test`)
+ * never sees SUPABASE_URL/REST_URL/DB_URL/BASE_URL at all, and tests/config.ts
+ * silently falls back to the old Supabase-CLI ports (54321/54322) — which
+ * nothing listens on since this project moved to Docker Compose. Only
+ * `docker compose run tests` set these itself (via its own `environment:`
+ * block), so this was invisible until testing outside Docker.
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
