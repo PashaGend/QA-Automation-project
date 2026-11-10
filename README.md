@@ -165,8 +165,9 @@ docker compose down -v --remove-orphans
 `install.command`/`install.ps1`. Double-click it from wherever you ran the installer (same folder
 as the cloned repos). Removes this project's Docker containers, volumes, networks and images, then
 asks before also deleting the `mundial-qa-automation`/`Mondial2026` folders (says no by default —
-that deletes any local changes). Deliberately leaves Git, Node.js, Docker Desktop (and Homebrew on
-Mac) installed, since those are shared tools, not this project's to remove.
+that deletes any local changes). Also deletes the install.*/uninstall.* files themselves, including
+itself, last. Deliberately leaves Git, Node.js, Docker Desktop (and Homebrew on Mac) installed,
+since those are shared tools, not this project's to remove.
 
 ## CI/CD
 
