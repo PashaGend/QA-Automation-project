@@ -297,9 +297,10 @@
 
   <div class="os-panel" data-os-panel="win">
     <div class="prose" style="margin-bottom:14px;">
-      <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> (קליק ימני על העמוד שנפתח → "Save as" → שומרים איפשהו, למשל שולחן העבודה)</p>
-      <p><b>2.</b> דאבל-קליק על הקובץ. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
-      <p><b>3.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". מפה הכל אוטומטי.</p>
+      <p><b>1.</b> לוחצים כאן: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> — ייפתח טאב חדש עם המון קוד. <b>זה תקין, זה לא אמור "להפעיל" כלום עדיין.</b></p>
+      <p><b>2.</b> בטאב הזה (עם הקוד), לוחצים <kbd>Ctrl+S</kbd> כדי לשמור אותו כקובץ. בחלון השמירה שנפתח: בוחרים איפה לשמור (למשל שולחן העבודה), ו<b>בשדה השם מוודאים שכתוב בדיוק <code style="font-family:'JetBrains Mono',monospace;">install.bat</code></b> — לפעמים הדפדפן מציע לבד <code style="font-family:'JetBrains Mono',monospace;">install.txt</code> או <code style="font-family:'JetBrains Mono',monospace;">install.html</code>, וזה לא יעבוד. לוחצים "שמור".</p>
+      <p><b>3.</b> דאבל-קליק על הקובץ ששמרתם. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
+      <p><b>4.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". מפה הכל אוטומטי.</p>
     </div>
     <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים. מעדיפים להריץ מתוך PowerShell ולא דאבל-קליק? יש גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1</a> — אותו קובץ בדיוק, בלי העטיפה של דאבל-קליק.</p>
     <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב דאבל-קליק על אותו קובץ.</p>
@@ -307,8 +308,9 @@
 
   <div class="os-panel" data-os-panel="mac" hidden>
     <div class="prose" style="margin-bottom:14px;">
-      <p><b>1.</b> מורידים את הקובץ: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.command ←</a> (קליק ימני → "Save Link As" → שומרים איפשהו, למשל שולחן העבודה)</p>
-      <p><b>2.</b> פותחים Terminal (⌘+רווח, מקלידים Terminal, Enter) ומריצים <b>פעם אחת בלבד</b>, כדי לתת הרשאת הרצה (קבצים שיורדים מהאינטרנט לא מקבלים אותה אוטומטית):</p>
+      <p><b>1.</b> לוחצים כאן: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.command ←</a> — ייפתח טאב חדש עם המון קוד. <b>זה תקין, זה לא אמור "להפעיל" כלום עדיין.</b></p>
+      <p><b>2.</b> בטאב הזה (עם הקוד), <kbd>Cmd+S</kbd> כדי לשמור כקובץ. בחלון השמירה: בוחרים איפה (למשל שולחן העבודה), ו<b>בשדה השם מוודאים שכתוב בדיוק <code style="font-family:'JetBrains Mono',monospace;">install.command</code></b> — לא <code style="font-family:'JetBrains Mono',monospace;">.txt</code> או <code style="font-family:'JetBrains Mono',monospace;">.html</code>.</p>
+      <p><b>3.</b> פותחים Terminal (⌘+רווח, מקלידים Terminal, Enter) ומריצים <b>פעם אחת בלבד</b>, כדי לתת הרשאת הרצה (קבצים שיורדים מהאינטרנט לא מקבלים אותה אוטומטית):</p>
     </div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
@@ -321,7 +323,7 @@
       </div>
     </div>
     <div class="prose" style="margin:14px 0;">
-      <p><b>3.</b> דאבל-קליק על הקובץ ב-Finder. macOS כנראה יחסום בפעם הראשונה ("cannot be opened because it is from an unidentified developer") — קליק ימני על הקובץ → <b>Open</b> → <b>Open</b> שוב באזהרה. מפה הכל אוטומטי (ייתכן שיבקש את הסיסמה שלכם בשביל Homebrew).</p>
+      <p><b>4.</b> דאבל-קליק על הקובץ ב-Finder. macOS כנראה יחסום בפעם הראשונה ("cannot be opened because it is from an unidentified developer") — קליק ימני על הקובץ → <b>Open</b> → <b>Open</b> שוב באזהרה. מפה הכל אוטומטי (ייתכן שיבקש את הסיסמה שלכם בשביל Homebrew).</p>
     </div>
     <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים.</p>
   </div>
