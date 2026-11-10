@@ -289,6 +289,7 @@
     <h2>הדרך הכי מהירה — קובץ אחד, דאבל-קליק</h2>
     <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
   </div>
+  <p class="note" style="text-align:center;margin-bottom:28px;">👇 הדרך הזו <b>מחליפה לגמרי</b> את כל 5 השלבים "שלב-שלב" למטה — בסופה האפליקציה כבר רצה ב-<code style="font-family:'JetBrains Mono',monospace;">localhost:8080</code>, בדיוק כמו בסוף שלב 5. <b>קוראים/עושים רק אחד מהשניים, לא את שניהם.</b> שלב 6 בסוף (איך מריצים את הבדיקות) רלוונטי בכל מקרה, לא משנה באיזו דרך התחלתם.</p>
 
   <div class="os-tabs">
     <button class="os-tab active" data-os="win">🪟 Windows</button>
@@ -425,6 +426,28 @@
       <p>פותחים דפדפן וגולשים לכתובת הזו — עותק מקומי מלא, לא נוגע בשום דבר אמיתי</p>
       <a class="url" href="http://localhost:8080" target="_blank" rel="noopener">localhost:8080</a>
     </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">6</span>
+      <h2>רוצים גם להריץ את הבדיקות?</h2>
+    </div>
+    <div class="prose" style="margin-bottom:14px;">
+      <p>אופציונלי — לא חובה כדי שהאפליקציה תעבוד. זה מריץ את 41 הבדיקות האוטומטיות של הפרויקט (ממשק משתמש, API, ושאילתות SQL) מול האפליקציה שכבר רצה.</p>
+      <p>פותחים שורת פקודה בתיקיית <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> (ראו שלב 2 למעלה אם צריך תזכורת) ומריצים:</p>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-lines">
+        <div class="term-line">
+          <span class="num">1</span>
+          <code>docker compose --env-file .env.docker run --rm tests</code>
+          <button class="copy-btn" data-copy="docker compose --env-file .env.docker run --rm tests">העתק</button>
+        </div>
+      </div>
+    </div>
+    <p class="note">בסוף הריצה אמור להופיע <code style="font-family:'JetBrains Mono',monospace;">41 passed</code> (ירוק). אם משהו נכשל — זה לא קשור להתקנה עצמה, כדאי לבדוק שהאפליקציה עדיין רצה ב-localhost:8080.</p>
   </div>
 
   <div class="footnote">
