@@ -17,7 +17,14 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "Mondial2026 QA project - setup starting..."
+printf '\033]0;Installing Mondial2026 - please wait\007'
+echo ""
+echo "======================================================="
+echo "  Installing the Mondial2026 QA environment."
+echo "  This window shows technical progress messages below -"
+echo "  you don't need to read, understand, or type anything."
+echo "  Just wait until it says 'Done!' further down."
+echo "======================================================="
 echo ""
 
 if ! command -v brew >/dev/null 2>&1; then

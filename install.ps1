@@ -33,6 +33,16 @@ if (-not (Test-Admin)) {
     exit
 }
 
+try { $host.UI.RawUI.WindowTitle = 'Installing Mondial2026 - please wait' } catch {}
+Write-Host ""
+Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host "  Installing the Mondial2026 QA environment." -ForegroundColor Cyan
+Write-Host "  This window shows technical progress messages below -" -ForegroundColor Cyan
+Write-Host "  you don't need to read, understand, or type anything." -ForegroundColor Cyan
+Write-Host "  Just wait until it says 'Done!' further down." -ForegroundColor Cyan
+Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host ""
+
 function Refresh-Path {
     # A newly-installed tool isn't on PATH for this already-running process
     # until we re-read it from the registry ourselves.
