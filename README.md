@@ -2,66 +2,21 @@
 
 QA automation project testing [Mundial2026](https://pgmondial2026.netlify.app) (a World Cup 2026
 score-prediction app: React + Vite + Supabase) from the outside. Covers UI (Playwright/TypeScript),
-API, SQL data validation, AI-assisted bug reporting + visual regression (Claude), and CI/CD.
+API, SQL data validation, AI-assisted bug reporting, and CI/CD.
 
 This repo holds the test environment and the test suites. The app under test lives in its own
 repo (`../Mondial2026`) and is never modified here.
 
-## Phase 1 — local environment
+## Local environment (Docker Compose)
 
-We run the app against a **local, disposable Supabase instance** (Postgres + REST API), never
-against production. The schema in `supabase/migrations/` is reconstructed from how the app's
-frontend code actually talks to Supabase (see the file's header comment) — it is not a copy of
-the real production schema, since we have no read access to it.
+We run the app against a **local, disposable backend** (Postgres + REST API), never against
+production. The schema in `supabase/migrations/` is reconstructed from how the app's frontend code
+actually talks to Supabase (see the file's header comment) — it is not a copy of the real
+production schema, since we have no read access to it.
 
-### Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) running
-- Node.js (already installed) — Supabase CLI is run via `npx supabase`, no global install needed
-
-### Start the local Supabase stack
-```bash
-npx supabase start
-```
-This prints a local API URL, DB URL, anon key, and service_role key, and runs the migration +
-seed (104 World Cup matches) automatically.
-
-### Point the app at it
-Copy the printed `API URL` and `anon key` into `../Mondial2026/.env.local` (gitignored by that
-repo, so this never touches its real `.env`):
-```
-VITE_SUPABASE_URL=<API URL from supabase start>
-VITE_SUPABASE_ANON_KEY=<anon key from supabase start>
-```
-Then, from `../Mondial2026`:
-```bash
-npm install
-npm run dev
-```
-
-### Stop / reset
-```bash
-npx supabase stop      # stop the local stack
-npx supabase db reset  # wipe + re-run migrations + seed
-```
-
-## Phase 2 — UI tests
-
-Playwright Test (TypeScript). Tests live in `tests/ui/`; `baseURL` in `playwright.config.ts` is
-already set to the local app (`http://localhost:5173`).
-
-```bash
-npm install
-npx playwright install chromium
-npx playwright test              # run the suite
-npx playwright codegen localhost:5173   # record a new test
-```
-
-## Docker Compose — one-command environment
-
-A self-contained, portable alternative to the `npx supabase start` setup above: a trimmed Postgres
-+ PostgREST stack (not the full 11-container Supabase CLI stack — we only ever use the DB and the
-REST API), the built Mondial2026 app, and the test suite, all wired together. This is what CI uses,
-and what anyone can run locally with no Supabase CLI install.
+A trimmed Postgres + PostgREST stack (not the full 11-container Supabase CLI stack — we only ever
+use the DB and the REST API), the built Mondial2026 app, and the test suite, all wired together,
+one command. This is what CI uses, and what anyone can run locally with no Supabase CLI install.
 
 | Service | Image | What it does |
 |---|---|---|
@@ -75,17 +30,36 @@ and what anyone can run locally with no Supabase CLI install.
 
 ### Bring up the environment
 ```bash
-docker compose --env-file .env.docker up -d db rest gateway web
+npm run env:up
 ```
+This always runs `docker compose --env-file .env.docker up -d --build db rest gateway web` — the
+`--build` matters every time: without it, Docker reuses whatever `web` image is already present,
+even if it was built days ago from older code. `web` has no way to know on its own that
+`Mondial2026`'s source changed, so if you skip `--build` after editing the app, you'll keep testing
+stale code with no warning. `npm run env:up` makes that impossible to forget.
+
 Open `http://localhost:8080` to use the app. Ports: `web` 8080, `gateway` 8000, `rest` 3000 (direct,
 no prefix), `db` 55432.
+
+`env:up` also runs `scripts/clean-test-users.mjs` at the end, every time. The `db` volume is
+**persistent** — it survives `up`/`down`/`--build`, everything short of `down -v` — so every signup
+every local test run has ever made (functional tests, k6 load tests, manual clicking around) just
+accumulates there forever; after two days of this project it had grown to 611 users. CI never has
+this problem (each job gets a brand new, empty volume), only local does. The script deletes every
+user except the two fixed, seeded ones (`supabase/seed.sql`) that tests log in as on purpose.
 
 ### Run the tests
 ```bash
 docker compose --env-file .env.docker run --rm tests
 ```
-Same test code as `npx playwright test` above — only the target (local URLs vs. Docker service
-names) changes, via environment variables in `tests/config.ts` / `playwright.config.ts`.
+Runs the full suite (`tests/api`, `tests/sql`, `tests/ui`) inside a container against the stack
+above — no local Node/Playwright install needed, and it's what CI runs.
+
+You can also run the same tests directly (VS Code's Playwright extension, or plain
+`npx playwright test`), once `npm install` + `npx playwright install chromium` are done and the
+environment above is up. `playwright.config.ts` loads `.env` on its own, pointing
+`tests/config.ts` and `baseURL` at the same Docker services (`localhost:8080` / `3000` / `55432`)
+either way — so both paths hit the exact same backend, just with or without the extra container.
 
 ### Run a load test
 ```bash
@@ -102,6 +76,14 @@ docker compose --env-file .env.docker up -d db-editor
 ```
 Open `http://localhost:8081` — System: PostgreSQL, Server: `db`, Username/Password: `postgres`,
 Database: `postgres`. Stop it when done: `docker compose stop db-editor`.
+
+### Legacy: plain Supabase CLI
+
+Before Docker Compose, this project ran against `npx supabase start` directly (the full Supabase
+CLI stack). That's fully superseded now — Docker Compose does everything it did, plus the test
+runner, load testing, and a DB GUI, in one command, with no CLI install. `supabase/config.toml`
+and `supabase/migrations/` are still here because the same migration/seed files back both setups,
+not because the CLI path is still a recommended way to run this project.
 
 ## Production smoke test
 
@@ -120,8 +102,8 @@ monitoring for the real app, no new infrastructure needed.
 ### What needs a rebuild, and what doesn't
 - **Test code changes** (`tests/*.spec.ts`) — nothing to rebuild, it's bind-mounted live. Just
   re-run `docker compose run tests`.
-- **App code changes** (if `Mondial2026` changes) — `docker compose build web` (Vite build is baked
-  into the image at build time, not live).
+- **App code changes** (if `Mondial2026` changes) — `npm run env:up` again (Vite build is baked
+  into the image at build time, not live, so this is never automatic — you have to re-run it).
 - **Schema/seed changes** (`supabase/migrations/`, `supabase/seed.sql`) — these only run once, when
   the DB volume is first created. `docker compose down -v` then `up` to re-apply.
 
