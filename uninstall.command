@@ -4,11 +4,12 @@
 # install.command: right-click -> Open -> Open).
 #
 # Removes everything install.command set up: this project's Docker
-# containers, volumes, networks and images. Does NOT uninstall Homebrew,
-# Git, Node.js or Docker Desktop themselves - those are shared tools you
-# might use for other things. Optionally (asks first) also deletes the
-# mundial-qa-automation and Mondial2026 folders themselves - say no if you
-# made local changes you want to keep.
+# containers, volumes, networks and images, the install.command/install.bat/
+# install.ps1 files themselves, and finally this file too. Does NOT
+# uninstall Homebrew, Git, Node.js or Docker Desktop themselves - those are
+# shared tools you might use for other things. Optionally (asks first) also
+# deletes the mundial-qa-automation and Mondial2026 folders themselves -
+# say no if you made local changes you want to keep.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 QA_PATH="$SCRIPT_DIR/mundial-qa-automation"
@@ -42,5 +43,17 @@ else
 fi
 
 echo ""
+echo "Removing the installer files themselves..."
+for f in install.command install.bat install.ps1; do
+    p="$SCRIPT_DIR/$f"
+    if [ -f "$p" ]; then rm -f "$p" && echo "  removed $f"; fi
+done
+
+echo ""
 echo "Done."
 read -r -p "Press Enter to close this window"
+
+# Delete this file itself, last. Unlike on Windows, this is safe to do
+# directly: Unix lets you unlink a file that's still open/running - the
+# shell keeps reading from its already-open file descriptor just fine.
+rm -f -- "$0"
