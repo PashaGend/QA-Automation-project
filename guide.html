@@ -192,16 +192,16 @@
     <p>Docker + Postgres/PostgREST + האפליקציה + 41 טסטים (UI/API/SQL), מקומית, בפקודה אחת</p>
   </div>
 
-  <p class="prose" style="text-align:center;margin-bottom:24px;">שתי אופציות <b>חלופיות</b> להרמת הסביבה — לא ברצף: <b>"קובץ אחד"</b> (מתקין הכל, כולל תלויות) או <b>"ידני"</b> (אם Git/Node/Docker כבר מותקנים אצלכם, או שהקובץ האחד לא עבד).</p>
+  <p class="prose" style="text-align:center;margin-bottom:14px;">שתי אופציות <b>חלופיות</b> להרמת הסביבה — לא ברצף: <b>"קובץ אחד"</b> (מתקין הכל, כולל תלויות) או <b>"ידני"</b> (אם Git/Node/Docker כבר מותקנים אצלכם, או שהקובץ האחד לא עבד).</p>
+
+  <div class="os-tabs" style="margin-bottom:26px;">
+    <button class="os-tab active" data-os="win">🪟 Windows</button>
+    <button class="os-tab" data-os="mac">🍎 Mac</button>
+  </div>
 
   <div class="section">
     <div class="section-head"><span class="tag">⚡ מהיר</span><h2>קובץ אחד</h2></div>
     <p class="prose">מתקין Git/Node/Docker אם חסרים, מרים את הסביבה, פותח את האפליקציה. אידמפוטנטי — אפשר להריץ שוב בלי נזק.</p>
-
-    <div class="os-tabs">
-      <button class="os-tab active" data-os="win">🪟 Windows</button>
-      <button class="os-tab" data-os="mac">🍎 Mac</button>
-    </div>
 
     <div class="os-panel" data-os-panel="win">
       <div class="term">
@@ -249,22 +249,33 @@
     <p class="prose">דרושים מראש (הקובץ האחד למעלה מתקין אותם לבד — כאן לא): <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> ·
       <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> (LTS) ·
       <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (צריך להישאר פתוח ברקע). או בשורת פקודה:</p>
-    <div class="term" style="margin-bottom:12px;">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-lines">
-        <div class="term-line">
-          <span class="num">🪟</span>
-          <code>winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop</code>
-          <button class="copy-btn" data-copy="winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop">העתק</button>
-        </div>
-        <div class="term-line">
-          <span class="num">🍎</span>
-          <code>brew install git node && brew install --cask docker</code>
-          <button class="copy-btn" data-copy="brew install git node && brew install --cask docker">העתק</button>
+
+    <div class="os-panel" data-os-panel="win">
+      <div class="term" style="margin-bottom:12px;">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <code>winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop</code>
+            <button class="copy-btn" data-copy="winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop">העתק</button>
+          </div>
         </div>
       </div>
+      <p class="prose">דורש Administrator. ר' גם <code>scripts/install-prereqs.ps1</code> בפרויקט.</p>
     </div>
-    <p class="prose">(<code>winget</code> דורש Administrator; <code>brew</code> דורש <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> מותקן מראש. ר' גם <code>scripts/install-prereqs.ps1</code> בפרויקט.)</p>
+    <div class="os-panel" data-os-panel="mac" hidden>
+      <div class="term" style="margin-bottom:12px;">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <code>brew install git node && brew install --cask docker</code>
+            <button class="copy-btn" data-copy="brew install git node && brew install --cask docker">העתק</button>
+          </div>
+        </div>
+      </div>
+      <p class="prose">דורש <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> מותקן מראש.</p>
+    </div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
@@ -310,19 +321,32 @@
 
   <div class="section">
     <div class="section-head"><span class="tag">אופציונלי</span><h2>הסרה</h2></div>
-    <div class="term">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-lines">
-        <div class="term-line">
-          <span class="num">🪟</span>
-          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat" target="_blank" rel="noopener">uninstall.bat →</a>
-        </div>
-        <div class="term-line">
-          <span class="num">🍎</span>
-          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command" target="_blank" rel="noopener">uninstall.command →</a>
+
+    <div class="os-panel" data-os-panel="win">
+      <div class="term">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat" target="_blank" rel="noopener">uninstall.bat →</a>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat">קישור</button>
+          </div>
         </div>
       </div>
     </div>
+    <div class="os-panel" data-os-panel="mac" hidden>
+      <div class="term">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command" target="_blank" rel="noopener">uninstall.command →</a>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command">קישור</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <p class="prose">שמירה — אותו <code>Ctrl+S</code>/<code>Cmd+S</code> כמו קובץ ההתקנה, לוודא סיומת מדויקת. שומרים <b>באותה תיקייה</b> כמו קובץ ההתקנה. מוריד containers/volumes/images של הפרויקט + את קבצי ה-install/uninstall עצמם (כולל את עצמו). שואל לפני מחיקת התיקיות. לא נוגע ב-Git/Node/Docker עצמם.</p>
   </div>
 
