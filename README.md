@@ -13,14 +13,15 @@ Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running 
 no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
 
 ```bash
-git clone https://github.com/PashaGend/WorldCup2026.git Mondial2026
 git clone https://github.com/PashaGend/mundial-qa-automation.git
 cd mundial-qa-automation
-npm run env:up
+npm run setup
 ```
-Open `http://localhost:8080` — the app is live, against a local, disposable backend. To run the
-full test suite (41 tests): `docker compose --env-file .env.docker run --rm tests`. Verified against
-a genuinely clean clone — no hidden manual step.
+`setup` clones the sibling `Mondial2026` repo next to this one automatically (only if it isn't
+already there), then runs `env:up` (below). Open `http://localhost:8080` — the app is live, against
+a local, disposable backend. To run the full test suite (41 tests):
+`docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
+no hidden manual step.
 
 ## Local environment (Docker Compose)
 
