@@ -65,341 +65,185 @@
     padding-inline: max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));
     padding-block: 32px 60px;
   }
-  .wrap { max-width: 760px; margin: 0 auto; }
+  .wrap { max-width: 720px; margin: 0 auto; }
 
-  .hero { text-align: center; margin-bottom: 44px; }
-  .hero .ball { font-size: 44px; display: block; margin-bottom: 10px; }
+  .hero { text-align: center; margin-bottom: 36px; }
+  .hero .ball { font-size: 36px; display: block; margin-bottom: 8px; }
   .hero h1 {
-    font-family: 'Heebo', sans-serif;
     font-weight: 900;
-    font-size: clamp(26px, 5vw, 38px);
-    margin: 0 0 10px;
+    font-size: clamp(22px, 4.5vw, 32px);
+    margin: 0 0 8px;
     letter-spacing: -0.01em;
   }
-  .hero p { color: var(--fg-dim); font-size: 16px; margin: 0; line-height: 1.6; }
+  .hero p { color: var(--fg-dim); font-size: 14.5px; margin: 0; line-height: 1.6; }
 
-  .callout {
-    background: var(--accent-soft);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 16px 18px;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--fg);
-    margin-bottom: 40px;
+  .section { margin-bottom: 30px; }
+  .section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .section-head h2 { font-size: 16px; font-weight: 700; margin: 0; }
+  .section-head .tag {
+    font-size: 10.5px; font-weight: 700; color: var(--accent-strong);
+    background: var(--accent-soft); border-radius: 999px; padding: 3px 9px;
   }
-  .callout b { color: var(--accent-strong); }
-
-  .step {
-    margin-bottom: 36px;
-  }
-  .step-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .step-num {
-    flex: 0 0 auto;
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #04140d;
-    font-weight: 900;
-    font-size: 15px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .step-head h2 {
-    font-size: 19px;
-    font-weight: 700;
-    margin: 0;
-  }
-
-  .cards { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: var(--shadow);
-    min-width: 0;
-  }
-  .card .icon { font-size: 22px; margin-bottom: 6px; display: block; }
-  .card h3 { font-size: 15px; margin: 0 0 4px; font-weight: 700; }
-  .card p { font-size: 13px; color: var(--fg-dim); margin: 0 0 10px; line-height: 1.5; }
-  .card a {
-    font-size: 13px; font-weight: 700; color: var(--accent-strong);
-    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
-  }
-  .card a:hover { text-decoration: underline; }
 
   .prose {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    box-shadow: var(--shadow);
-    font-size: 14.5px;
-    line-height: 1.75;
-    color: var(--fg);
+    font-size: 13.5px; line-height: 1.7; color: var(--fg-dim); margin: 0 0 10px;
   }
-  .prose p { margin: 0 0 10px; }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose kbd {
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--accent-soft);
-    color: var(--accent-strong);
-    border-radius: 6px;
-    padding: 2px 7px;
-    font-size: 12.5px;
+  .prose b { color: var(--fg); }
+  .prose code {
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    background: var(--accent-soft); color: var(--accent-strong);
+    border-radius: 5px; padding: 1px 6px;
   }
+  .prose a { color: var(--accent-strong); font-weight: 700; }
 
   .term {
     background: var(--term-bg);
     border: 1px solid var(--term-border);
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    margin-top: 12px;
   }
   .term-bar {
     display: flex; align-items: center; gap: 6px;
-    padding: 10px 14px;
+    padding: 8px 14px;
     border-bottom: 1px solid var(--term-border);
   }
-  .term-bar span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .term-bar span { width: 9px; height: 9px; border-radius: 50%; display: block; }
   .term-bar span:nth-child(1) { background: #ff5f57; }
   .term-bar span:nth-child(2) { background: #febc2e; }
   .term-bar span:nth-child(3) { background: #28c840; }
-  .term-lines { padding: 6px 0; }
+  .term-lines { padding: 4px 0; }
   .term-line {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 16px;
+    padding: 9px 16px;
     direction: ltr;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--term-fg);
   }
   .term-line + .term-line { border-top: 1px dashed var(--term-border); }
   .term-line .num {
     flex: 0 0 auto;
-    width: 20px; height: 20px;
-    border-radius: 6px;
+    min-width: 18px; height: 18px;
+    border-radius: 5px;
     background: rgba(52,211,153,0.15);
     color: var(--term-fg);
     font-weight: 700;
-    font-size: 11px;
+    font-size: 10.5px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Heebo', sans-serif;
+    padding: 0 3px;
   }
-  .term-line code { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+  .term-line code { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; background: none; color: inherit; padding: 0; }
+  .term-line a { color: inherit; text-decoration: underline; }
   .copy-btn {
     flex: 0 0 auto;
     background: transparent;
     border: 1px solid var(--term-border);
     color: var(--term-fg);
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 11px;
+    border-radius: 7px;
+    padding: 4px 9px;
+    font-size: 10.5px;
     font-family: 'Heebo', sans-serif;
     cursor: pointer;
   }
   .copy-btn:hover { background: rgba(52,211,153,0.1); }
   .copy-btn.copied { background: var(--accent); color: #04140d; border-color: var(--accent); }
 
-  .note { font-size: 13px; color: var(--fg-dim); margin-top: 10px; line-height: 1.7; }
-  .note b { color: var(--fg); }
-
-  .os-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+  .os-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
   .os-tab {
     flex: 1 1 0;
-    font-family: 'Heebo', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    padding: 10px 14px;
-    border-radius: 12px;
+    padding: 8px 12px;
+    border-radius: 10px;
     border: 1px solid var(--card-border);
     background: var(--card);
     color: var(--fg-dim);
     cursor: pointer;
   }
-  .os-tab.active {
-    background: var(--accent);
-    color: #04140d;
-    border-color: var(--accent);
-  }
+  .os-tab.active { background: var(--accent); color: #04140d; border-color: var(--accent); }
+  .os-panel .term { margin-bottom: 8px; }
 
-  .divider { border: none; border-top: 1px dashed var(--card-border); margin: 44px 0; }
+  .divider { border: none; border-top: 1px dashed var(--card-border); margin: 34px 0; }
 
-  .final {
-    text-align: center;
-    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-    border-radius: 18px;
-    padding: 26px 20px;
-    color: #04140d;
-    box-shadow: var(--shadow);
-  }
-  .final .icon { font-size: 30px; display: block; margin-bottom: 6px; }
-  .final h2 { font-size: 19px; margin: 0 0 6px; font-weight: 900; }
-  .final p { margin: 0; font-size: 14px; opacity: 0.85; }
-  .final a.url {
-    display: inline-block; margin-top: 12px;
-    background: #04140d; color: #d8fbe6;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    padding: 9px 16px;
-    border-radius: 10px;
-    text-decoration: none;
-    direction: ltr;
-  }
-
-  .bonus {
-    border: 1.5px dashed var(--card-border);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 36px;
-  }
-  .bonus-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .bonus-badge {
-    flex: 0 0 auto;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent-strong);
-    background: var(--accent-soft);
-    border-radius: 999px;
-    padding: 4px 10px;
-  }
-  .bonus-head h2 { font-size: 18px; font-weight: 700; margin: 0; }
+  table.specs { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.specs td { padding: 6px 0; border-bottom: 1px solid var(--card-border); color: var(--fg-dim); }
+  table.specs td:first-child { color: var(--fg); font-weight: 700; width: 38%; white-space: nowrap; }
 
   .footnote {
     text-align: center;
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--fg-dim);
-    margin-top: 30px;
+    margin-top: 26px;
     line-height: 1.8;
   }
-  .footnote code {
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--accent-soft);
-    border-radius: 5px;
-    padding: 1px 6px;
-  }
+  .footnote code { font-family: 'JetBrains Mono', monospace; background: var(--accent-soft); border-radius: 5px; padding: 1px 6px; }
+  .footnote a { color: var(--accent-strong); font-weight: 700; }
 </style>
 
 <div class="wrap">
 
   <div class="hero">
     <span class="ball">⚽</span>
-    <h1>מריצים את סביבת ה-QA Automation של מונדיאל 2026</h1>
-    <p>לא רק האפליקציה — database, API, וסוויטת בדיקות שלמה, הכל מקומית אצלכם. מדריך מלא, צעד-צעד, גם אם מעולם לא פתחתם שורת פקודה בחיים</p>
+    <h1>סביבת QA Automation - מונדיאל 2026</h1>
+    <p>Docker + Postgres/PostgREST + האפליקציה + 41 טסטים (UI/API/SQL), מקומית, בפקודה אחת</p>
   </div>
 
-  <div class="callout">
-    <b>מה זה בכלל "שורת פקודה"?</b><br>
-    תוכנה שבה כותבים פקודות בטקסט במקום ללחוץ על כפתורים. נשמע מפחיד — בפועל: מעתיקים טקסט, מדביקים, לוחצים Enter. זהו כל הסוד.
-  </div>
+  <div class="section">
+    <div class="section-head"><span class="tag">⚡ מהיר</span><h2>קובץ אחד</h2></div>
+    <p class="prose">מתקין Git/Node/Docker אם חסרים, מרים את הסביבה, פותח את האפליקציה. אידמפוטנטי — אפשר להריץ שוב בלי נזק.</p>
 
-  <div class="final" style="margin-bottom:24px;">
-    <span class="icon">⚡</span>
-    <h2>הדרך הכי מהירה — קובץ אחד, דאבל-קליק</h2>
-    <p>בלי Docker? בלי Git? בלי Node? לא משנה — קובץ אחד עושה הכל: מתקין מה שחסר, מוריד את הפרויקט, ומריץ אותו.</p>
-  </div>
-  <p class="note" style="text-align:center;margin-bottom:28px;">👇 הדרך הזו <b>מחליפה לגמרי</b> את כל 5 השלבים "שלב-שלב" למטה — בסופה האפליקציה כבר רצה ב-<code style="font-family:'JetBrains Mono',monospace;">localhost:8080</code>, בדיוק כמו בסוף שלב 5. <b>קוראים/עושים רק אחד מהשניים, לא את שניהם.</b> הבונוס בסוף המדריך (איך מריצים את הבדיקות) רלוונטי בכל מקרה, לא משנה באיזו דרך התחלתם.</p>
-
-  <div class="os-tabs">
-    <button class="os-tab active" data-os="win">🪟 Windows</button>
-    <button class="os-tab" data-os="mac">🍎 Mac</button>
-  </div>
-
-  <div class="os-panel" data-os-panel="win">
-    <div class="prose" style="margin-bottom:14px;">
-      <p><b>1.</b> לוחצים כאן: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.bat ←</a> — ייפתח טאב חדש עם המון קוד. <b>זה תקין, זה לא אמור "להפעיל" כלום עדיין.</b></p>
-      <p><b>2.</b> בטאב הזה (עם הקוד), לוחצים <kbd>Ctrl+S</kbd> כדי לשמור אותו כקובץ. בחלון השמירה שנפתח: בוחרים איפה לשמור (למשל שולחן העבודה), ו<b>בשדה השם מוודאים שכתוב בדיוק <code style="font-family:'JetBrains Mono',monospace;">install.bat</code></b> — לפעמים הדפדפן מציע לבד <code style="font-family:'JetBrains Mono',monospace;">install.txt</code> או <code style="font-family:'JetBrains Mono',monospace;">install.html</code>, וזה לא יעבוד. לוחצים "שמור".</p>
-      <p><b>3.</b> דאבל-קליק על הקובץ ששמרתם. ייתכן ש-Windows יציג אזהרה כחולה ("Windows protected your PC") — זה קורה לכל קובץ שמורידים מהאינטרנט ולא חתום; לוחצים <b>More info</b> ואז <b>Run anyway</b>.</p>
-      <p><b>4.</b> ייפתח חלון הרשאות (UAC) — לוחצים "כן". ייפתח חלון שחור עם טקסט טכני שרץ — <b>זה תקין ומוסבר בתוך החלון עצמו</b>, לא צריך לקרוא או להקליד שם כלום. מפה הכל אוטומטי.</p>
+    <div class="os-tabs">
+      <button class="os-tab active" data-os="win">🪟 Windows</button>
+      <button class="os-tab" data-os="mac">🍎 Mac</button>
     </div>
-    <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים. מעדיפים להריץ מתוך PowerShell ולא דאבל-קליק? יש גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.ps1</a> — אותו קובץ בדיוק, בלי העטיפה של דאבל-קליק.</p>
-    <p class="note">⚠️ מגבלה אחת אמיתית: אם ל-Windows שלכם מעולם לא הופעלה וירטואליזציה (WSL2), Docker ידרוש הפעלה מחדש חד-פעמית של המחשב. הסקריפט מזהה את זה ואומר לכם במפורש — מפעילים מחדש ומריצים שוב דאבל-קליק על אותו קובץ.</p>
-  </div>
 
-  <div class="os-panel" data-os-panel="mac" hidden>
-    <div class="prose" style="margin-bottom:14px;">
-      <p><b>1.</b> לוחצים כאן: <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command" target="_blank" rel="noopener" style="color:var(--accent-strong);font-weight:700;">install.command ←</a> — ייפתח טאב חדש עם המון קוד. <b>זה תקין, זה לא אמור "להפעיל" כלום עדיין.</b></p>
-      <p><b>2.</b> בטאב הזה (עם הקוד), <kbd>Cmd+S</kbd> כדי לשמור כקובץ. בחלון השמירה: בוחרים איפה (למשל שולחן העבודה), ו<b>בשדה השם מוודאים שכתוב בדיוק <code style="font-family:'JetBrains Mono',monospace;">install.command</code></b> — לא <code style="font-family:'JetBrains Mono',monospace;">.txt</code> או <code style="font-family:'JetBrains Mono',monospace;">.html</code>.</p>
-      <p><b>3.</b> פותחים Terminal (⌘+רווח, מקלידים Terminal, Enter) ומריצים <b>פעם אחת בלבד</b>, כדי לתת הרשאת הרצה (קבצים שיורדים מהאינטרנט לא מקבלים אותה אוטומטית):</p>
-    </div>
-    <div class="term">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-lines">
-        <div class="term-line">
-          <span class="num">1</span>
-          <code>chmod +x ~/Desktop/install.command</code>
-          <button class="copy-btn" data-copy="chmod +x ~/Desktop/install.command">העתק</button>
+    <div class="os-panel" data-os-panel="win">
+      <div class="term">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat" target="_blank" rel="noopener">install.bat →</a>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.bat">קישור</button>
+          </div>
+          <div class="term-line">
+            <span class="num">2</span>
+            <code>powershell -ExecutionPolicy Bypass -File .\install.bat</code>
+            <button class="copy-btn" data-copy="powershell -ExecutionPolicy Bypass -File .\install.bat">העתק</button>
+          </div>
         </div>
       </div>
+      <p class="prose">דורש אישור UAC (מתקין תוכנות). SmartScreen עלול להתריע — More info → Run anyway. גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.ps1" target="_blank" rel="noopener">install.ps1</a> קיים, ללא ה-polyglot batch.</p>
     </div>
-    <div class="prose" style="margin:14px 0;">
-      <p><b>4.</b> דאבל-קליק על הקובץ ב-Finder. macOS כנראה יחסום בפעם הראשונה ("cannot be opened because it is from an unidentified developer") — קליק ימני על הקובץ → <b>Open</b> → <b>Open</b> שוב באזהרה. ייפתח חלון Terminal עם טקסט טכני שרץ — <b>זה תקין ומוסבר בתוך החלון עצמו</b>, לא צריך לקרוא או להקליד שם כלום. מפה הכל אוטומטי (ייתכן שיבקש את הסיסמה שלכם בשביל Homebrew).</p>
+
+    <div class="os-panel" data-os-panel="mac" hidden>
+      <div class="term">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-lines">
+          <div class="term-line">
+            <span class="num">1</span>
+            <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command" target="_blank" rel="noopener">install.command →</a>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/install.command">קישור</button>
+          </div>
+          <div class="term-line">
+            <span class="num">2</span>
+            <code>chmod +x ~/Desktop/install.command</code>
+            <button class="copy-btn" data-copy="chmod +x ~/Desktop/install.command">העתק</button>
+          </div>
+        </div>
+      </div>
+      <p class="prose">דאבל-קליק דרך Finder. הורדה מהדפדפן מאפסת את ה-execute bit (ולכן ה-<code>chmod</code>), ו-Gatekeeper יחסום בפעם הראשונה — Right-click → Open → Open. משתמש ב-Homebrew.</p>
     </div>
-    <p class="note">אפשר להריץ שוב בלי חשש — כל שלב מדלג על מה שכבר קיים.</p>
   </div>
 
   <hr class="divider">
 
-  <div class="hero" style="margin-bottom:30px;">
-    <h1 style="font-size:22px;">או: שלב-שלב, בעצמכם</h1>
-    <p>אותו תוצאה בדיוק, רק כל שלב בנפרד</p>
-  </div>
-
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">1</span>
-      <h2>שלוש התקנות חד-פעמיות</h2>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <span class="icon">🐳</span>
-        <h3>Docker Desktop</h3>
-        <p>התוכנה שמריצה את כל הפרויקט, בלי להתקין שום דבר אחר על המחשב. חייבת להישאר פתוחה ברקע.</p>
-        <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">להורדה ←</a>
-      </div>
-      <div class="card">
-        <span class="icon">🟢</span>
-        <h3>Node.js</h3>
-        <p>מריץ קטע קוד קטן אחד שהפרויקט צריך. בוחרים בגרסה המומלצת (LTS).</p>
-        <a href="https://nodejs.org/" target="_blank" rel="noopener">להורדה ←</a>
-      </div>
-      <div class="card">
-        <span class="icon">📦</span>
-        <h3>Git</h3>
-        <p>מעתיק את הקוד מ-GitHub למחשב. אפשר ללחוץ "הבא" בכל המסכים בלי לשנות כלום.</p>
-        <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">להורדה ←</a>
-      </div>
-    </div>
-    <p class="note">כל אחת מותקנת כמו תוכנה רגילה: מורידים, פותחים, לוחצים "הבא" עד הסוף. <b>רק את Docker Desktop צריך לפתוח ולהשאיר פתוח</b> — השתיים האחרות עובדות ברקע אוטומטית.</p>
-  </div>
-
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">2</span>
-      <h2>פותחים שורת פקודה</h2>
-    </div>
-    <div class="prose">
-      <p>ב-Windows: לוחצים על כפתור <b>Start</b>, מקלידים <kbd>PowerShell</kbd>, ולוחצים Enter על התוצאה שמופיעה. ייפתח חלון כהה עם טקסט — זה הוא.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">3</span>
-      <h2>מעתיקים-מדביקים שלוש שורות</h2>
-    </div>
-    <div class="prose">
-      <p>אחת-אחת: לוחצים על כפתור <b>העתק</b>, עוברים לחלון השחור, מדביקים (<kbd>Ctrl+V</kbd> או קליק ימני → Paste), לוחצים Enter, מחכים שהשורה הבאה של ">" תופיע, וממשיכים לפקודה הבאה.</p>
-    </div>
+  <div class="section">
+    <div class="section-head"><h2>ידני</h2></div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
@@ -410,73 +254,26 @@
         </div>
         <div class="term-line">
           <span class="num">2</span>
-          <code>cd mundial-qa-automation</code>
-          <button class="copy-btn" data-copy="cd mundial-qa-automation">העתק</button>
-        </div>
-        <div class="term-line">
-          <span class="num">3</span>
-          <code>npm run setup</code>
-          <button class="copy-btn" data-copy="npm run setup">העתק</button>
+          <code>cd mundial-qa-automation && npm run setup</code>
+          <button class="copy-btn" data-copy="cd mundial-qa-automation && npm run setup">העתק</button>
         </div>
       </div>
     </div>
+    <p class="prose"><code>setup</code> משכפל את <code>Mondial2026</code> כ-sibling אוטומטית (אם חסר), ואז מריץ <code>env:up</code> (<code>npm install</code> → <code>docker compose up --build</code> → ניקוי test users). תוצאה זהה לחלוטין לקובץ האחד למעלה.</p>
   </div>
 
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">4</span>
-      <h2>מה קורה עכשיו</h2>
-    </div>
-    <div class="prose">
-      <p>המון טקסט יתחיל לרוץ במסך — <b>זה תקין.</b> זה מוריד ובונה הכל אוטומטית: בפעם הראשונה לוקח כ-2–3 דקות.</p>
-      <p>לא נוגעים בכלום ולא סוגרים את החלון עד שהטקסט מפסיק לזוז ומופיעה שוב שורת פקודה ריקה.</p>
-    </div>
+  <div class="section">
+    <div class="section-head"><h2>מה זה מרים</h2></div>
+    <table class="specs">
+      <tr><td>app</td><td>localhost:8080</td></tr>
+      <tr><td>gateway</td><td>localhost:8000 (nginx, /rest/v1 prefix)</td></tr>
+      <tr><td>rest</td><td>localhost:3000 (PostgREST, ישיר)</td></tr>
+      <tr><td>db</td><td>localhost:55432 (Postgres 17 + pg-safeupdate)</td></tr>
+    </table>
   </div>
 
-  <div class="step">
-    <div class="step-head">
-      <span class="step-num">5</span>
-      <h2>פותחים את האפליקציה</h2>
-    </div>
-    <div class="final">
-      <span class="icon">✅</span>
-      <h2>האפליקציה רצה!</h2>
-      <p>פותחים דפדפן וגולשים לכתובת הזו — עותק מקומי מלא, לא נוגע בשום דבר אמיתי</p>
-      <a class="url" href="http://localhost:8080" target="_blank" rel="noopener">localhost:8080</a>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="bonus">
-    <div class="bonus-head">
-      <span class="bonus-badge">בונוס · אופציונלי</span>
-      <h2>רוצים גם להריץ את הבדיקות?</h2>
-    </div>
-    <div class="prose" style="margin-bottom:14px;">
-      <p><b>זה לא חלק מההתקנה</b> — האפליקציה כבר רצה ועובדת בלי השלב הזה. זה מריץ את 41 הבדיקות האוטומטיות של הפרויקט (ממשק משתמש, API, ושאילתות SQL) מול האפליקציה שכבר רצה, בשביל מי שסקרן.</p>
-      <p><b>1.</b> פותחים שורת פקודה — ב-Windows: Start, מקלידים PowerShell, Enter (שלב 2 למעלה). ב-Mac: ⌘+רווח, מקלידים Terminal, Enter.</p>
-      <p><b>2.</b> עוברים לתיקיית הפרויקט. אם השתמשתם בקובץ הדאבל-קליק (<code style="font-family:'JetBrains Mono',monospace;">install.bat</code>/<code style="font-family:'JetBrains Mono',monospace;">install.command</code>), התיקייה <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> נוצרה **ליד** הקובץ ששמרתם — למשל אם שמרתם על שולחן העבודה:</p>
-    </div>
-    <div class="term">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-lines">
-        <div class="term-line">
-          <span class="num">🪟</span>
-          <code>cd $HOME\Desktop\mundial-qa-automation</code>
-          <button class="copy-btn" data-copy="cd $HOME\Desktop\mundial-qa-automation">העתק</button>
-        </div>
-        <div class="term-line">
-          <span class="num">🍎</span>
-          <code>cd ~/Desktop/mundial-qa-automation</code>
-          <button class="copy-btn" data-copy="cd ~/Desktop/mundial-qa-automation">העתק</button>
-        </div>
-      </div>
-    </div>
-    <p class="note">(שמרתם במקום אחר? אותו רעיון — <code style="font-family:'JetBrains Mono',monospace;">cd</code> לאותה תיקייה, ואז <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code>. עשיתם את ה-<code style="font-family:'JetBrains Mono',monospace;">git clone</code> בעצמכם בשיטה הידנית למטה? זו אותה תיקייה שנכנסתם אליה שם עם <code style="font-family:'JetBrains Mono',monospace;">cd</code>.)</p>
-    <div class="prose" style="margin:14px 0;">
-      <p><b>3.</b> מריצים:</p>
-    </div>
+  <div class="section">
+    <div class="section-head"><span class="tag">אופציונלי</span><h2>בדיקות</h2></div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
@@ -487,53 +284,30 @@
         </div>
       </div>
     </div>
-    <p class="note"><b>4.</b> מה לצפות לראות: כמה שניות של טקסט הכנה, ואז רשימה של שמות בדיקות שרצות אחת-אחת (למשל <code style="font-family:'JetBrains Mono',monospace;">[1/41] tests\ui\login.spec.ts ...</code>) — זה לוקח בערך 15–30 שניות. בסוף אמורה להופיע שורה ירוקה: <code style="font-family:'JetBrains Mono',monospace;">41 passed</code>. אם משהו נכשל (אדום) — זה לא קשור להתקנה עצמה; כדאי לבדוק קודם שהאפליקציה עדיין נגישה ב-localhost:8080.</p>
+    <p class="prose">41 טסטים (Playwright) — UI, API, SQL. ~20 שנ'. <code>41 passed</code> בסוף = תקין.</p>
   </div>
 
-  <div class="bonus">
-    <div class="bonus-head">
-      <span class="bonus-badge">בונוס · אופציונלי</span>
-      <h2>רוצים להסיר הכל בסוף?</h2>
-    </div>
-    <div class="prose" style="margin-bottom:14px;">
-      <p>יש קובץ מקביל לקובץ ההתקנה, שמבטל אותו: מוריד containers/volumes/images של הפרויקט הזה בלבד. <b>לא</b> מסיר את Git, Node.js או Docker Desktop עצמם — אלה כלים משותפים שאולי תצטרכו למשהו אחר.</p>
-      <p><b>1.</b> מורידים אותו בדיוק כמו קובץ ההתקנה (לוחצים → <kbd>Ctrl+S</kbd>/<kbd>Cmd+S</kbd> → מוודאים שהשם נשאר מדויק):</p>
-    </div>
+  <div class="section">
+    <div class="section-head"><span class="tag">אופציונלי</span><h2>הסרה</h2></div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
         <div class="term-line">
           <span class="num">🪟</span>
-          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">uninstall.bat →</a>
+          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.bat" target="_blank" rel="noopener">uninstall.bat →</a>
         </div>
         <div class="term-line">
           <span class="num">🍎</span>
-          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">uninstall.command →</a>
+          <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/fix/local-dotenv-and-db-cleanup/uninstall.command" target="_blank" rel="noopener">uninstall.command →</a>
         </div>
       </div>
     </div>
-    <div class="prose" style="margin:14px 0;">
-      <p><b>2.</b> שומרים אותו <b>באותה תיקייה</b> שבה שמרתם את קובץ ההתקנה בשלב 1 (ליד <code style="font-family:'JetBrains Mono',monospace;">mundial-qa-automation</code> ו-<code style="font-family:'JetBrains Mono',monospace;">Mondial2026</code>) — לא בתוך אחת מהתיקיות עצמן.</p>
-      <p><b>3. (ב-Mac בלבד)</b> בדיוק כמו בהתקנה — הורדה מהדפדפן מאפסת את הרשאת ההרצה, אז פותחים Terminal ונותנים אותה פעם אחת (מחליפים נתיב אם שמרתם במקום אחר מהדוגמה בשלב ההתקנה):</p>
-    </div>
-    <div class="term">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-lines">
-        <div class="term-line">
-          <span class="num">1</span>
-          <code>chmod +x ~/Desktop/uninstall.command</code>
-          <button class="copy-btn" data-copy="chmod +x ~/Desktop/uninstall.command">העתק</button>
-        </div>
-      </div>
-    </div>
-    <div class="prose" style="margin:14px 0;">
-      <p><b>4.</b> דאבל-קליק (ב-Mac: אותו תהליך "Open" כמו בהתקנה). נשאל אם למחוק גם את תיקיות הפרויקט עצמן — ברירת המחדל היא <b>לא</b> (שומר על שינויים מקומיים שעשיתם). אם לא נגעתם בקוד, אפשר לענות כן. בסוף הוא גם מוחק את קבצי ההתקנה/הסרה עצמם (כולל את עצמו) — לא נשאר כלום מלבד מה שבחרתם לשמור.</p>
-    </div>
+    <p class="prose">שומרים באותה תיקייה כמו קובץ ההתקנה. מוריד containers/volumes/images של הפרויקט + את קבצי ה-install/uninstall עצמם (כולל את עצמו). שואל לפני מחיקת התיקיות. לא נוגע ב-Git/Node/Docker עצמם.</p>
   </div>
 
   <div class="footnote">
-    לעצור הכל זמנית בלי להסיר כלום: <code>docker compose down</code> (מריצים מתוך אותה תיקייה).<br>
-    פרטים טכניים נוספים — ב-README של הפרויקט ב-GitHub.
+    <code>docker compose down</code> — עצירה זמנית, בלי מחיקה.<br>
+    פירוט ארכיטקטורה, CI/CD, branch protection, AI bug filing — ב-<a href="https://github.com/PashaGend/mundial-qa-automation" target="_blank" rel="noopener">README</a>.
   </div>
 
 </div>
