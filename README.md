@@ -7,6 +7,21 @@ API, SQL data validation, AI-assisted bug reporting, and CI/CD.
 This repo holds the test environment and the test suites. The app under test lives in its own
 repo (`../Mondial2026`) and is never modified here.
 
+## Quickstart
+
+Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
+no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
+
+```bash
+git clone https://github.com/PashaGend/WorldCup2026.git Mondial2026
+git clone https://github.com/PashaGend/mundial-qa-automation.git
+cd mundial-qa-automation
+npm run env:up
+```
+Open `http://localhost:8080` — the app is live, against a local, disposable backend. To run the
+full test suite (41 tests): `docker compose --env-file .env.docker run --rm tests`. Verified against
+a genuinely clean clone — no hidden manual step.
+
 ## Local environment (Docker Compose)
 
 We run the app against a **local, disposable backend** (Postgres + REST API), never against

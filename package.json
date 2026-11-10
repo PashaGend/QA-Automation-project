@@ -4,7 +4,7 @@
   "description": "QA automation project testing [Mundial2026](https://pgmondial2026.netlify.app) (a World Cup 2026 score-prediction app: React + Vite + Supabase) from the outside. Covers UI (Playwright/Python), API, SQL data validation, AI-assisted bug reporting, and CI/CD.",
   "main": "index.js",
   "scripts": {
-    "env:up": "docker compose --env-file .env.docker up -d --build db rest gateway web && node scripts/clean-test-users.mjs"
+    "env:up": "npm install --no-audit --no-fund && docker compose --env-file .env.docker up -d --build db rest gateway web && node scripts/clean-test-users.mjs"
   },
   "keywords": [],
   "author": "",
