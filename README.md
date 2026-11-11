@@ -11,53 +11,6 @@ repo (`../Mondial2026`) and is never modified here.
 of what this project demonstrates (architecture, test strategy, the real bugs the CI/CD pipeline
 surfaced, AI-assisted bug triage). Needs to be shared with you first if you're not the owner.
 
-## Quickstart
-
-Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
-no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
-
-```bash
-git clone https://github.com/PashaGend/mundial-qa-automation.git
-cd mundial-qa-automation
-npm run setup
-```
-`setup` clones the sibling `Mondial2026` repo next to this one automatically (only if it isn't
-already there), then runs `env:up` (below). Open `http://localhost:8080` — the app is live, against
-a local, disposable backend. To run the full test suite (41 tests):
-`docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
-no hidden manual step.
-
-**Starting from nothing, on Windows?** `install.bat` at the repo root does the entire thing in one
-file, no terminal needed: installs Git/Node.js/Docker Desktop if missing, starts Docker and waits
-for it, clones both repos next to itself, brings up the environment, and opens the app in your
-browser. Download it (no git needed first) from
-`https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat` (once this is
-merged — for now, the `fix/local-dotenv-and-db-cleanup` branch) and double-click it. Windows will
-likely show an unsigned-file warning (`More info` → `Run anyway`) and then a UAC prompt (`Yes`) —
-normal for any downloaded, unsigned script. Safe to re-run. `install.ps1` is the exact same script
-without the double-click wrapper, for running from PowerShell directly. The one thing neither can
-script around: if Windows has never had virtualization (WSL2) enabled before, Docker needs a
-one-time restart — the script detects that and tells you to restart and run it again.
-
-(`install.bat` is a polyglot — valid as both a batch file and a PowerShell script in one file, via
-a `<# : ... #>` header cmd.exe reads as a tiny launcher and PowerShell reads as a comment. Verified
-end to end: the batch-to-PowerShell handoff, the elevation relaunch, and `$scriptPath` resolving
-correctly inside the re-invoked content.)
-
-**Same thing, on a Mac?** `install.command` does the same — Homebrew instead of `winget`, otherwise
-identical. `.command` files are natively double-clickable in Finder (no polyglot trick needed).
-Download from `.../install.command`, then in Terminal once: `chmod +x ~/Desktop/install.command`
-(a browser download doesn't carry the executable bit the way `git clone` does), then double-click —
-macOS will likely refuse the first run as unsigned (right-click → Open → Open to bypass, once).
-*Honest limit: this was written and syntax-checked (`bash -n`), but never actually run on a Mac —
-none was available while building it.*
-
-`scripts\install-prereqs.ps1` is the Windows installer step alone (Git/Node/Docker, no cloning or
-running), for anyone who'd rather do the rest themselves.
-
-A non-technical walkthrough with copy-paste buttons also exists for this Quickstart — ask in a
-Claude Code session in this repo, or see `guide.html`.
-
 ## Local environment (Docker Compose)
 
 We run the app against a **local, disposable backend** (Postgres + REST API), never against
@@ -249,3 +202,25 @@ Then open a pull request on GitHub (`main` ← `my-change`). The `test` check ru
 **Merge** button becomes available — merging updates `main`, which is what actually triggers
 Netlify's deploy. If the check is red, GitHub blocks the merge outright; `main` — and therefore
 production — never sees that code.
+
+## Quickstart
+
+Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
+no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
+
+```bash
+git clone https://github.com/PashaGend/mundial-qa-automation.git
+cd mundial-qa-automation
+npm run setup
+```
+Clones the sibling `Mondial2026` repo automatically, brings up the environment, opens
+`http://localhost:8080`. Tests: `docker compose --env-file .env.docker run --rm tests`.
+
+Starting from a machine with nothing installed? `install.bat` / `install.command` at the repo root
+do the entire thing — installs prerequisites, clones, runs, opens the app — no terminal commands to
+type. `scripts\install-prereqs.ps1` is the Windows prerequisites step alone, if you'd rather do the
+rest yourself.
+
+**[Full step-by-step guide](https://claude.ai/artifact/HwGUnJ2riepNMhRY8PgrQe)** — every command,
+every download link, every "why", for both OSes — this section only has the essentials. Also in the
+repo as `guide.html`.
