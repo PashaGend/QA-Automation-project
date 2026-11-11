@@ -9,8 +9,7 @@ production monitoring, gated by CI/CD so broken code can never reach `main`.
 This repo holds the test environment and test suites. The app under test lives in its own repo
 (`../Mondial2026`) and is never modified here. The pipeline found **3 real production bugs**.
 
-**[Presentation deck](https://claude.ai/artifact/C9odmz8w36PEMC5rHogL8B)** &middot;
-**[Full setup guide](https://claude.ai/artifact/HwGUnJ2riepNMhRY8PgrQe)**
+**[Presentation deck](https://claude.ai/artifact/C9odmz8w36PEMC5rHogL8B)**
 
 ## 🛠 Tools & Technologies
 
