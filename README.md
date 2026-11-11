@@ -7,6 +7,10 @@ API, SQL data validation, AI-assisted bug reporting, and CI/CD.
 This repo holds the test environment and the test suites. The app under test lives in its own
 repo (`../Mondial2026`) and is never modified here.
 
+**[Presentation deck](https://claude.ai/artifact/C9odmz8w36PEMC5rHogL8B)** — a 10-slide walkthrough
+of what this project demonstrates (architecture, test strategy, the real bugs the CI/CD pipeline
+surfaced, AI-assisted bug triage). Needs to be shared with you first if you're not the owner.
+
 ## Quickstart
 
 Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
