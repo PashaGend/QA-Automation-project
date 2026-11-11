@@ -154,6 +154,23 @@ monitoring for the real app, no new infrastructure needed.
 - **Schema/seed changes** (`supabase/migrations/`, `supabase/seed.sql`) — these only run once, when
   the DB volume is first created. `docker compose down -v` then `up` to re-apply.
 
+### Checking it's actually up
+```bash
+npm run status
+```
+Checks the 4 core containers are running and that the app answers at `localhost:8080` — a
+container being "running" isn't the same as the app inside it actually working. Exits non-zero and
+tells you to run `npm run env:up` if anything's off. Worth running before any demo instead of
+assuming it's still up from last time.
+
+All services have `restart: unless-stopped` in `docker-compose.yml`, so Docker should bring them
+back on its own if one crashes or Docker itself restarts. On the machine this was built on
+(Docker Engine inside WSL2, not Docker Desktop), that restart policy was tested directly and
+**did not actually trigger** — a killed container stayed down. That's a property of that specific
+Docker install, not of this project's config; a normal Docker Desktop install should honor it
+correctly. Either way, `npm run status` is the reliable way to know for sure, rather than trusting
+the restart policy blindly.
+
 ### Reset everything
 ```bash
 docker compose down -v --remove-orphans

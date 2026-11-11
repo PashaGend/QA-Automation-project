@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "node scripts/setup.mjs",
+    "status": "node scripts/status.mjs",
     "env:up": "npm install --no-audit --no-fund && docker compose --env-file .env.docker up -d --build db rest gateway web && node scripts/clean-test-users.mjs"
   },
   "keywords": [],

@@ -1,6 +1,7 @@
 services:
   db:
     container_name: qa-db
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/Dockerfile.db
@@ -21,6 +22,7 @@ services:
 
   rest:
     container_name: qa-rest
+    restart: unless-stopped
     image: postgrest/postgrest:v12.2.3
     depends_on:
       db:
@@ -35,6 +37,7 @@ services:
 
   gateway:
     container_name: qa-gateway
+    restart: unless-stopped
     image: nginx:alpine
     depends_on:
       - rest
@@ -45,6 +48,7 @@ services:
 
   web:
     container_name: qa-web
+    restart: unless-stopped
     # cloning only this repo? `docker compose pull web` grabs this prebuilt
     # image instead of needing ../Mondial2026 at all. Have both repos and want
     # your own local edits reflected? `docker compose build web` uses the
