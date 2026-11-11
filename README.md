@@ -67,10 +67,9 @@ mundial-qa-automation
 │   └── smoke/                  # production.spec.ts
 │
 ├── k6/user-flow-load.js
-├── docker-compose.yml
-├── install.bat / install.command / install.ps1
-├── uninstall.bat / uninstall.command
-└── guide.html
+├── installers/                 # install.bat/.command/.ps1, uninstall.bat/.command
+├── docs/guide.html
+└── docker-compose.yml
 ```
 
 `tests` drives `web` and calls `rest`/`db` directly. `npm run env:up` brings the whole stack up and
@@ -105,8 +104,8 @@ directly. `npm run status` is the reliable check, not the restart policy.
 
 ## 🚀 Running It
 
-**Zero setup** — double-click `install.bat` (Windows) / `install.command` (Mac): installs
-everything, clones both repos, brings the stack up, opens the app.
+**Zero setup** — double-click `installers/install.bat` (Windows) / `installers/install.command`
+(Mac): installs everything, clones both repos, brings the stack up, opens the app.
 
 **Manual**:
 ```bash
@@ -124,7 +123,7 @@ docker compose --env-file .env.docker run --rm tests
 **DB GUI**: `docker compose --env-file .env.docker up -d db-editor` → `localhost:8081`
 
 **Check it's up**: `npm run status` &middot; **Reset**: `docker compose down -v --remove-orphans`
-&middot; **Uninstall**: `uninstall.bat` / `uninstall.command`
+&middot; **Uninstall**: `installers/uninstall.bat` / `installers/uninstall.command`
 
 Needs Docker Desktop + Node.js, nothing else. Every command, explained: **[Full setup guide](https://claude.ai/artifact/HwGUnJ2riepNMhRY8PgrQe)**.
 
