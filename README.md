@@ -1,18 +1,90 @@
-# AI-Assisted QA Automation — Mundial2026
+# 🚀 AI-Assisted QA Automation — Mundial2026
+
+## 📖 Project Overview
 
 A portfolio project demonstrating end-to-end QA automation: testing [Mundial2026](https://pgmondial2026.netlify.app)
-(a World Cup 2026 score-prediction app: React + Vite + Supabase) entirely from the outside. Covers
-UI (Playwright/TypeScript), API, SQL data validation, AI-assisted bug reporting, and CI/CD —
-including 3 real production bugs this pipeline found and fixed.
+(a World Cup 2026 score-prediction app: React + Vite + Supabase) entirely from the outside.
 
 This repo holds the test environment and the test suites. The app under test lives in its own
-repo (`../Mondial2026`) and is never modified here.
+repo (`../Mondial2026`) and is never modified here. The suite covers UI, API, SQL data integrity,
+load, and production smoke testing, gated by CI/CD so broken code can never reach `main` — and it
+found 3 real production bugs along the way.
 
 **[Presentation deck](https://claude.ai/artifact/C9odmz8w36PEMC5rHogL8B)** — a 10-slide walkthrough
 of what this project demonstrates (architecture, test strategy, the real bugs the CI/CD pipeline
 surfaced, AI-assisted bug triage). Needs to be shared with you first if you're not the owner.
 
-## Local environment (Docker Compose)
+## 🛠 Tools & Technologies
+
+- **Automation**: Playwright 🎭 + TypeScript ⚡
+- **Backend under test**: Postgres 17 + PostgREST 🗄️, proxied through nginx
+- **Containerization**: Docker Compose 🐳 — one command, no Supabase CLI
+- **Load testing**: k6 📈 (informational, not a merge gate)
+- **CI/CD**: GitHub Actions 🚀, branch-protected, required status checks
+- **Bug tracking**: Jira 🪲 — AI-assisted triage, human-approved before filing
+- **AI assistant**: Claude Code 🤖 — drafts bug reports, pairs on the pipeline itself
+
+## 🏗 Architecture
+
+```mermaid
+flowchart LR
+    subgraph stack["Docker Compose — one command"]
+        DB[("db<br/>Postgres 17")] --> REST["rest<br/>PostgREST"]
+        REST --> GW["gateway<br/>nginx"]
+        GW --> WEB["web<br/>Mondial2026 app"]
+    end
+    TESTS["tests<br/>Playwright — UI · API · SQL"] --> WEB
+    TESTS --> REST
+    TESTS --> DB
+    LOAD["load<br/>k6"] -.optional.-> GW
+
+    PUSH(["git push / PR"]) --> CI["GitHub Actions"]
+    CI --> TESTS
+    TESTS -->|green| GATE{{"Required check"}}
+    TESTS -.red.-> JIRA["Jira bug<br/>AI-drafted"]
+    GATE -->|passes| MAIN[("main")]
+    MAIN --> NETLIFY["Netlify deploy"]
+```
+
+Broken code never reaches `main` — the test suite is a required status check, not an informational
+one. Netlify deploys `main` automatically and has no idea CI exists, so the gate has to happen
+before the merge, not after.
+
+## 🏆 Key Features
+
+✔️ One-command Docker Compose environment — no Supabase CLI, no manual secrets
+✔️ UI + API + SQL test coverage against a real, disposable backend
+✔️ Required vs. informational signals, chosen deliberately (load tests never block a merge)
+✔️ Branch-protected CI/CD across two repos — broken code can't reach `main`
+✔️ AI-assisted bug triage straight into Jira, human-approved before filing
+✔️ Production smoke test every 6 hours — synthetic uptime monitoring, zero new infra
+✔️ Cross-platform installers (`install.bat` / `install.command`) — zero prior setup
+✔️ `npm run status` — verifies the stack is actually serving, not just "running"
+
+## 🧪 Test Coverage
+
+**🔐 UI — Playwright** (`tests/ui/`)
+- Sign-up, admin login bypass, non-admin password requirement, logout, session persistence
+- Phone-number validation (empty / too long / too short / non-numeric)
+- Button and navigation functionality, icon visibility across pages
+
+**🔌 API** (`tests/api/`)
+- Users: lookup by phone, creation, unique/not-null violations, deletion, empty-result handling
+- Matches: fetch, exact count, non-existent match handling
+- Predictions: create/update/delete, `Prefer: return=representation`, duplicate/foreign-key/check
+  violations, unfiltered writes blocked, cascade delete
+
+**🗄️ SQL data integrity** (`tests/sql/`)
+- Leaderboard query correctness, grouping by outcome type, ranking, uniqueness constraints
+
+**📈 Load** (`k6/`) — informational
+- ~20 concurrent users signing up, fetching matches, submitting predictions — a demonstration,
+  not a merge gate
+
+**🌐 Production smoke** (`tests/smoke/`)
+- Read-only check against the real deployed app, every 6 hours
+
+## ⚙️ Local environment (Docker Compose)
 
 We run the app against a **local, disposable backend** (Postgres + REST API), never against
 production. The schema in `supabase/migrations/` is reconstructed from how the app's frontend code
@@ -90,7 +162,7 @@ runner, load testing, and a DB GUI, in one command, with no CLI install. `supaba
 and `supabase/migrations/` are still here because the same migration/seed files back both setups,
 not because the CLI path is still a recommended way to run this project.
 
-## Production smoke test
+## 🌐 Production smoke test
 
 `tests/smoke/production.spec.ts` is a read-only check against the real deployed app
 (`pgmondial2026.netlify.app`) — loads the page, checks the login form renders. Nothing is
@@ -144,7 +216,7 @@ that deletes any local changes). Also deletes the install.*/uninstall.* files th
 itself, last. Deliberately leaves Git, Node.js, Docker Desktop (and Homebrew on Mac) installed,
 since those are shared tools, not this project's to remove.
 
-## CI/CD
+## 🔄 CI/CD
 
 Two GitHub Actions workflows, one per repo, both running the same Docker Compose stack:
 
@@ -163,7 +235,7 @@ Two GitHub Actions workflows, one per repo, both running the same Docker Compose
 The first two workflows also trigger on `pull_request`, which is what makes branch protection
 (below) work — GitHub needs a check to run on the PR itself before it can gate merging on it.
 
-## AI-assisted bug filing (Jira)
+## 🤖 AI-assisted bug filing (Jira)
 
 `scripts/file-jira-bug.mjs` files a bug directly in Jira (project `KAN`) given a title and
 description:
@@ -176,7 +248,7 @@ Code drafts the report in conversation (same as any other task in this session �
 API call), then this script files it. Keeps a human in the loop before a real ticket is created,
 and avoids spamming the board from flaky/transient CI failures.
 
-## Branch protection — broken code can't reach `main`
+## 🔒 Branch protection — broken code can't reach `main`
 
 Both repos' `main` branch has a protection rule (Settings → Branches): **require a pull request
 before merging**, and **require the `test` status check to pass before merging**. In practice this
@@ -204,7 +276,7 @@ Then open a pull request on GitHub (`main` ← `my-change`). The `test` check ru
 Netlify's deploy. If the check is red, GitHub blocks the merge outright; `main` — and therefore
 production — never sees that code.
 
-## Quickstart
+## 🚀 Quickstart
 
 Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
 no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
