@@ -1,8 +1,9 @@
 # AI-Assisted QA Automation — Mundial2026
 
-QA automation project testing [Mundial2026](https://pgmondial2026.netlify.app) (a World Cup 2026
-score-prediction app: React + Vite + Supabase) from the outside. Covers UI (Playwright/TypeScript),
-API, SQL data validation, AI-assisted bug reporting, and CI/CD.
+A portfolio project demonstrating end-to-end QA automation: testing [Mundial2026](https://pgmondial2026.netlify.app)
+(a World Cup 2026 score-prediction app: React + Vite + Supabase) entirely from the outside. Covers
+UI (Playwright/TypeScript), API, SQL data validation, AI-assisted bug reporting, and CI/CD —
+including 3 real production bugs this pipeline found and fixed.
 
 This repo holds the test environment and the test suites. The app under test lives in its own
 repo (`../Mondial2026`) and is never modified here.
