@@ -7,6 +7,57 @@ API, SQL data validation, AI-assisted bug reporting, and CI/CD.
 This repo holds the test environment and the test suites. The app under test lives in its own
 repo (`../Mondial2026`) and is never modified here.
 
+**[Presentation deck](https://claude.ai/artifact/C9odmz8w36PEMC5rHogL8B)** — a 10-slide walkthrough
+of what this project demonstrates (architecture, test strategy, the real bugs the CI/CD pipeline
+surfaced, AI-assisted bug triage). Needs to be shared with you first if you're not the owner.
+
+## Quickstart
+
+Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) running and Node.js — that's it,
+no Supabase CLI, no manual secrets (`.env.docker` is safe to commit, see below).
+
+```bash
+git clone https://github.com/PashaGend/mundial-qa-automation.git
+cd mundial-qa-automation
+npm run setup
+```
+`setup` clones the sibling `Mondial2026` repo next to this one automatically (only if it isn't
+already there), then runs `env:up` (below). Open `http://localhost:8080` — the app is live, against
+a local, disposable backend. To run the full test suite (41 tests):
+`docker compose --env-file .env.docker run --rm tests`. Verified against a genuinely clean clone —
+no hidden manual step.
+
+**Starting from nothing, on Windows?** `install.bat` at the repo root does the entire thing in one
+file, no terminal needed: installs Git/Node.js/Docker Desktop if missing, starts Docker and waits
+for it, clones both repos next to itself, brings up the environment, and opens the app in your
+browser. Download it (no git needed first) from
+`https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat` (once this is
+merged — for now, the `fix/local-dotenv-and-db-cleanup` branch) and double-click it. Windows will
+likely show an unsigned-file warning (`More info` → `Run anyway`) and then a UAC prompt (`Yes`) —
+normal for any downloaded, unsigned script. Safe to re-run. `install.ps1` is the exact same script
+without the double-click wrapper, for running from PowerShell directly. The one thing neither can
+script around: if Windows has never had virtualization (WSL2) enabled before, Docker needs a
+one-time restart — the script detects that and tells you to restart and run it again.
+
+(`install.bat` is a polyglot — valid as both a batch file and a PowerShell script in one file, via
+a `<# : ... #>` header cmd.exe reads as a tiny launcher and PowerShell reads as a comment. Verified
+end to end: the batch-to-PowerShell handoff, the elevation relaunch, and `$scriptPath` resolving
+correctly inside the re-invoked content.)
+
+**Same thing, on a Mac?** `install.command` does the same — Homebrew instead of `winget`, otherwise
+identical. `.command` files are natively double-clickable in Finder (no polyglot trick needed).
+Download from `.../install.command`, then in Terminal once: `chmod +x ~/Desktop/install.command`
+(a browser download doesn't carry the executable bit the way `git clone` does), then double-click —
+macOS will likely refuse the first run as unsigned (right-click → Open → Open to bypass, once).
+*Honest limit: this was written and syntax-checked (`bash -n`), but never actually run on a Mac —
+none was available while building it.*
+
+`scripts\install-prereqs.ps1` is the Windows installer step alone (Git/Node/Docker, no cloning or
+running), for anyone who'd rather do the rest themselves.
+
+A non-technical walkthrough with copy-paste buttons also exists for this Quickstart — ask in a
+Claude Code session in this repo, or see `guide.html`.
+
 ## Local environment (Docker Compose)
 
 We run the app against a **local, disposable backend** (Postgres + REST API), never against
@@ -107,10 +158,37 @@ monitoring for the real app, no new infrastructure needed.
 - **Schema/seed changes** (`supabase/migrations/`, `supabase/seed.sql`) — these only run once, when
   the DB volume is first created. `docker compose down -v` then `up` to re-apply.
 
+### Checking it's actually up
+```bash
+npm run status
+```
+Checks the 4 core containers are running and that the app answers at `localhost:8080` — a
+container being "running" isn't the same as the app inside it actually working. Exits non-zero and
+tells you to run `npm run env:up` if anything's off. Worth running before any demo instead of
+assuming it's still up from last time.
+
+All services have `restart: unless-stopped` in `docker-compose.yml`, so Docker should bring them
+back on its own if one crashes or Docker itself restarts. On the machine this was built on
+(Docker Engine inside WSL2, not Docker Desktop), that restart policy was tested directly and
+**did not actually trigger** — a killed container stayed down. That's a property of that specific
+Docker install, not of this project's config; a normal Docker Desktop install should honor it
+correctly. Either way, `npm run status` is the reliable way to know for sure, rather than trusting
+the restart policy blindly.
+
 ### Reset everything
 ```bash
 docker compose down -v --remove-orphans
 ```
+
+### Uninstalling completely
+
+`uninstall.bat` (Windows) / `uninstall.command` (Mac) — the counterpart to `install.bat`/
+`install.command`/`install.ps1`. Double-click it from wherever you ran the installer (same folder
+as the cloned repos). Removes this project's Docker containers, volumes, networks and images, then
+asks before also deleting the `mundial-qa-automation`/`Mondial2026` folders (says no by default —
+that deletes any local changes). Also deletes the install.*/uninstall.* files themselves, including
+itself, last. Deliberately leaves Git, Node.js, Docker Desktop (and Homebrew on Mac) installed,
+since those are shared tools, not this project's to remove.
 
 ## CI/CD
 

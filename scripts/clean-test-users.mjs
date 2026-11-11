@@ -9,8 +9,12 @@
 import 'dotenv/config';
 import { Pool } from 'pg';
 
+// Unlike tests/config.ts (shared with the plain Supabase CLI path), this
+// script only ever runs against the Docker stack (wired into `env:up`), so
+// its fallback points straight at Docker's db port — no .env needed at all
+// on a fresh clone, where SUPABASE_URL/DB_URL/etc. haven't been set up yet.
 const DB_URL =
-  process.env.DB_URL || 'postgresql://postgres:postgres@127.0.0.1:54322/postgres';
+  process.env.DB_URL || 'postgresql://postgres:postgres@localhost:55432/postgres';
 
 // Phones that must never be deleted — the deterministic admin user some
 // tests rely on logging in as (see supabase/seed.sql for why it exists).

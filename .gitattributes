@@ -1,0 +1,5 @@
+# Shell scripts must always have LF line endings, regardless of anyone's
+# local autocrlf setting - a CRLF shebang line ("#!/bin/bash\r") fails with
+# "bad interpreter" on macOS/Linux.
+*.command text eol=lf
+*.sh text eol=lf
