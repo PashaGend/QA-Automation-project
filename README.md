@@ -34,39 +34,50 @@ This repo holds the test environment and test suites. The app under test lives i
 | `load` | `grafana/k6` | Optional load test, informational only |
 | `db-editor` | `adminer` | Optional DB GUI |
 
-```mermaid
-flowchart TD
-    DB[("🗄️ db — Postgres 17")] --> REST["🔌 rest — PostgREST"]
-    REST --> GW["🌉 gateway — nginx"]
-    GW --> WEB["🖥️ web — Mondial2026 app"]
+The repo is structured to keep the environment, the suites, and the automation scripts cleanly
+separated:
 
-    classDef store fill:#1f2333,stroke:#34d399,stroke-width:2px,color:#eef1f7;
-    classDef svc fill:#171a28,stroke:#6a7179,stroke-width:1px,color:#eef1f7;
-    class DB store;
-    class REST,GW,WEB svc;
 ```
-`tests` drives `web` and calls `rest`/`db` directly. One command brings it all up: `npm run env:up`
-(always rebuilds `web`, so you never test stale code against fresh test runs). The `db` volume
-persists across restarts — `clean-test-users.mjs` wipes non-seed signups after every `env:up`.
-
-```mermaid
-flowchart TD
-    PUSH(["👤 git push / PR"]) --> CI["🚀 GitHub Actions"]
-    CI --> RUN["🎭 run the suite"]
-    RUN --> GATE{{"✅ all green?"}}
-    GATE -->|yes| MAIN[("🔀 main")]
-    MAIN --> NETLIFY["☁️ Netlify deploy"]
-    GATE -->|no| JIRA["🪲 Jira bug — AI-drafted"]
-
-    classDef pass fill:#11261c,stroke:#34d399,stroke-width:2px,color:#34d399;
-    classDef fail fill:#2a1810,stroke:#f0934b,stroke-width:2px,color:#f0934b;
-    classDef neutral fill:#171a28,stroke:#6a7179,stroke-width:1px,color:#eef1f7;
-    class GATE neutral;
-    class MAIN,NETLIFY pass;
-    class JIRA fail;
+mundial-qa-automation
+│
+├── .github/
+│   └── workflows/
+│       ├── playwright.yml      # full suite on every push/PR
+│       ├── load.yml            # daily k6 run, informational
+│       └── smoke.yml           # production check every 6h
+│
+├── docker/
+│   ├── Dockerfile.db           # postgres:17-alpine + pg-safeupdate
+│   ├── Dockerfile.app          # builds the Mondial2026 app
+│   └── gateway.conf            # nginx: adds the /rest/v1 prefix
+│
+├── scripts/
+│   ├── setup.mjs               # clone + bring the stack up, one command
+│   ├── status.mjs              # npm run status
+│   ├── clean-test-users.mjs    # resets the db volume after every env:up
+│   └── file-jira-bug.mjs       # AI-drafted bug → Jira
+│
+├── supabase/
+│   ├── migrations/0001_init.sql
+│   └── seed.sql                # the two fixed test users
+│
+├── tests/
+│   ├── ui/                     # login.spec.ts, func.spec.ts
+│   ├── api/                    # users, matches, predictions
+│   ├── sql/                    # leaderboard.spec.ts
+│   └── smoke/                  # production.spec.ts
+│
+├── k6/user-flow-load.js
+├── docker-compose.yml
+├── install.bat / install.command / install.ps1
+├── uninstall.bat / uninstall.command
+└── guide.html
 ```
-Branch protection on `main` requires the `test` check to pass — Netlify deploys `main` with no idea
-CI exists, so the gate has to happen before the merge, not after.
+
+`tests` drives `web` and calls `rest`/`db` directly. `npm run env:up` brings the whole stack up and
+always rebuilds `web`, so you never test stale app code. Branch protection on `main` requires the
+`test` check to pass — Netlify deploys `main` with no idea CI exists, so the gate has to happen
+before the merge, not after.
 
 **Known limitation**: `restart: unless-stopped` is set on every service, but on this machine's
 Docker Engine (WSL2, not Docker Desktop) a killed container doesn't actually restart itself — tested
