@@ -226,16 +226,11 @@
         <div class="term-lines">
           <div class="term-line">
             <span class="num">1</span>
-            <a href="../installers/install.command" download="install.command">⬇️ Download install.command</a>
-          </div>
-          <div class="term-line">
-            <span class="num">2</span>
-            <code>chmod +x ~/Downloads/install.command</code>
-            <button class="copy-btn" data-copy="chmod +x ~/Downloads/install.command">Copy</button>
+            <a href="../installers/install.command.zip" download="install.command.zip">⬇️ Download install.command</a>
           </div>
         </div>
       </div>
-      <p class="prose">Double-click it from Finder once downloaded. Downloading resets the execute bit (hence the <code>chmod</code>), and Gatekeeper will block it the first time — Right-click → Open → Open. Uses Homebrew.</p>
+      <p class="prose">Downloads as a zip so it arrives already executable — no Terminal needed. Safari extracts it automatically; in Chrome/Firefox, double-click the zip in Finder first. Then double-click <code>install.command</code>. Gatekeeper will block it the first time — Right-click → Open → Open. Uses Homebrew.</p>
     </div>
   </div>
 
@@ -341,18 +336,13 @@
         <div class="term-lines">
           <div class="term-line">
             <span class="num">1</span>
-            <a href="../installers/uninstall.command" download="uninstall.command">⬇️ Download uninstall.command</a>
-          </div>
-          <div class="term-line">
-            <span class="num">2</span>
-            <code>chmod +x ~/Downloads/uninstall.command</code>
-            <button class="copy-btn" data-copy="chmod +x ~/Downloads/uninstall.command">Copy</button>
+            <a href="../installers/uninstall.command.zip" download="uninstall.command.zip">⬇️ Download uninstall.command</a>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="prose">Downloads land in the same folder (<code>~/Downloads</code>) as the installer by default — that's where it needs to be. Removes the project's containers/volumes/images plus the install/uninstall files themselves (including itself). Asks before deleting the folders. Doesn't touch Git/Node/Docker themselves.</p>
+    <p class="prose">Downloads as a zip (already executable, no Terminal needed) into the same folder (<code>~/Downloads</code>) as the installer by default — that's where it needs to be. Removes the project's containers/volumes/images plus the install/uninstall files themselves (including itself). Asks before deleting the folders. Doesn't touch Git/Node/Docker themselves.</p>
   </div>
 
   <div class="footnote">
