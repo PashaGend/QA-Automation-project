@@ -1,4 +1,4 @@
-<title>סביבת QA Automation - מונדיאל 2026</title>
+<title>QA Automation Environment - Mundial2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -61,7 +61,6 @@
       var(--bg);
     color: var(--fg);
     font-family: 'Heebo', sans-serif;
-    direction: rtl;
     padding-inline: max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));
     padding-block: 32px 60px;
   }
@@ -118,7 +117,6 @@
     align-items: center;
     gap: 10px;
     padding: 9px 16px;
-    direction: ltr;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
     color: var(--term-fg);
@@ -188,11 +186,11 @@
 
   <div class="hero">
     <span class="ball">⚽</span>
-    <h1>סביבת QA Automation - מונדיאל 2026</h1>
-    <p>Docker + Postgres/PostgREST + האפליקציה + 41 טסטים (UI/API/SQL), מקומית, בפקודה אחת</p>
+    <h1>QA Automation Environment - Mundial2026</h1>
+    <p>Docker + Postgres/PostgREST + the app + 41 tests (UI/API/SQL), locally, one command</p>
   </div>
 
-  <p class="prose" style="text-align:center;margin-bottom:14px;">שתי אופציות <b>חלופיות</b> להרמת הסביבה — לא ברצף: <b>"קובץ אחד"</b> (מתקין הכל, כולל תלויות) או <b>"ידני"</b> (אם Git/Node/Docker כבר מותקנים אצלכם, או שהקובץ האחד לא עבד).</p>
+  <p class="prose" style="text-align:center;margin-bottom:14px;">Two <b>alternative</b> ways to bring up the environment — not in sequence: <b>"One file"</b> (installs everything, including dependencies) or <b>"Manual"</b> (if Git/Node/Docker are already installed, or the one-file option didn't work).</p>
 
   <div class="os-tabs" style="margin-bottom:26px;">
     <button class="os-tab active" data-os="win">🪟 Windows</button>
@@ -200,8 +198,8 @@
   </div>
 
   <div class="section">
-    <div class="section-head"><span class="tag">⚡ מהיר</span><h2>קובץ אחד</h2></div>
-    <p class="prose">מתקין Git/Node/Docker אם חסרים, מרים את הסביבה, פותח את האפליקציה. אידמפוטנטי — אפשר להריץ שוב בלי נזק.</p>
+    <div class="section-head"><span class="tag">⚡ Fast</span><h2>One file</h2></div>
+    <p class="prose">Installs Git/Node/Docker if missing, brings up the environment, opens the app. Idempotent — safe to run again.</p>
 
     <div class="os-panel" data-os-panel="win">
       <div class="term">
@@ -210,16 +208,16 @@
           <div class="term-line">
             <span class="num">1</span>
             <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat" target="_blank" rel="noopener">install.bat →</a>
-            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat">קישור</button>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.bat">Link</button>
           </div>
           <div class="term-line">
             <span class="num">2</span>
             <code>powershell -ExecutionPolicy Bypass -File .\install.bat</code>
-            <button class="copy-btn" data-copy="powershell -ExecutionPolicy Bypass -File .\install.bat">העתק</button>
+            <button class="copy-btn" data-copy="powershell -ExecutionPolicy Bypass -File .\install.bat">Copy</button>
           </div>
         </div>
       </div>
-      <p class="prose">הקישור פותח raw code בדפדפן, לא מוריד ישירות — <code>Ctrl+S</code> לשמור, לוודא שהסיומת נשארת <code>.bat</code> (לא <code>.txt</code>/<code>.html</code> שהדפדפן אוהב להציע). דורש אישור UAC (מתקין תוכנות). SmartScreen עלול להתריע — More info → Run anyway. גם <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.ps1" target="_blank" rel="noopener">install.ps1</a> קיים, ללא ה-polyglot batch.</p>
+      <p class="prose">The link opens raw code in the browser, not a direct download — <code>Ctrl+S</code> to save, make sure the extension stays <code>.bat</code> (not <code>.txt</code>/<code>.html</code>, which the browser likes to suggest). Needs UAC approval (installing software). SmartScreen may warn — More info → Run anyway. <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.ps1" target="_blank" rel="noopener">install.ps1</a> also exists, without the polyglot batch.</p>
     </div>
 
     <div class="os-panel" data-os-panel="mac" hidden>
@@ -229,26 +227,26 @@
           <div class="term-line">
             <span class="num">1</span>
             <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.command" target="_blank" rel="noopener">install.command →</a>
-            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.command">קישור</button>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/install.command">Link</button>
           </div>
           <div class="term-line">
             <span class="num">2</span>
             <code>chmod +x ~/Desktop/install.command</code>
-            <button class="copy-btn" data-copy="chmod +x ~/Desktop/install.command">העתק</button>
+            <button class="copy-btn" data-copy="chmod +x ~/Desktop/install.command">Copy</button>
           </div>
         </div>
       </div>
-      <p class="prose">הקישור פותח raw code בדפדפן — <code>Cmd+S</code> לשמור, לוודא שהסיומת נשארת <code>.command</code>. דאבל-קליק דרך Finder. הורדה מהדפדפן מאפסת את ה-execute bit (ולכן ה-<code>chmod</code>), ו-Gatekeeper יחסום בפעם הראשונה — Right-click → Open → Open. משתמש ב-Homebrew.</p>
+      <p class="prose">The link opens raw code in the browser — <code>Cmd+S</code> to save, make sure the extension stays <code>.command</code>. Double-click it from Finder. Downloading from the browser resets the execute bit (hence the <code>chmod</code>), and Gatekeeper will block it the first time — Right-click → Open → Open. Uses Homebrew.</p>
     </div>
   </div>
 
   <hr class="divider">
 
   <div class="section">
-    <div class="section-head"><h2>ידני</h2></div>
-    <p class="prose">דרושים מראש (הקובץ האחד למעלה מתקין אותם לבד — כאן לא): <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> ·
+    <div class="section-head"><h2>Manual</h2></div>
+    <p class="prose">Prerequisites (the one-file option above installs them for you — this path doesn't): <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> ·
       <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> (LTS) ·
-      <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (צריך להישאר פתוח ברקע). או בשורת פקודה:</p>
+      <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (needs to stay running in the background). Or from the command line:</p>
 
     <div class="os-panel" data-os-panel="win">
       <div class="term" style="margin-bottom:12px;">
@@ -257,11 +255,11 @@
           <div class="term-line">
             <span class="num">1</span>
             <code>winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop</code>
-            <button class="copy-btn" data-copy="winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop">העתק</button>
+            <button class="copy-btn" data-copy="winget install Git.Git OpenJS.NodeJS.LTS Docker.DockerDesktop">Copy</button>
           </div>
         </div>
       </div>
-      <p class="prose">מריצים מ-PowerShell <b>כ-Administrator</b> (Start → מקלידים PowerShell → קליק ימני → Run as administrator) — <code>winget</code> נכשל בלי זה.</p>
+      <p class="prose">Run from PowerShell <b>as Administrator</b> (Start → type PowerShell → right-click → Run as administrator) — <code>winget</code> fails without it.</p>
     </div>
     <div class="os-panel" data-os-panel="mac" hidden>
       <div class="term" style="margin-bottom:12px;">
@@ -270,16 +268,16 @@
           <div class="term-line">
             <span class="num">1</span>
             <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
-            <button class="copy-btn" data-copy='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'>העתק</button>
+            <button class="copy-btn" data-copy='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'>Copy</button>
           </div>
           <div class="term-line">
             <span class="num">2</span>
             <code>brew install git node && brew install --cask docker</code>
-            <button class="copy-btn" data-copy="brew install git node && brew install --cask docker">העתק</button>
+            <button class="copy-btn" data-copy="brew install git node && brew install --cask docker">Copy</button>
           </div>
         </div>
       </div>
-      <p class="prose">שורה 1 — <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> עצמו, אם עוד אין (מבקש סיסמת Mac). דלגו עליה אם כבר מותקן.</p>
+      <p class="prose">Line 1 — <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> itself, if you don't already have it (asks for your Mac password). Skip it if it's already installed.</p>
     </div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
@@ -287,45 +285,45 @@
         <div class="term-line">
           <span class="num">1</span>
           <code>git clone https://github.com/PashaGend/mundial-qa-automation.git</code>
-          <button class="copy-btn" data-copy="git clone https://github.com/PashaGend/mundial-qa-automation.git">העתק</button>
+          <button class="copy-btn" data-copy="git clone https://github.com/PashaGend/mundial-qa-automation.git">Copy</button>
         </div>
         <div class="term-line">
           <span class="num">2</span>
           <code>cd mundial-qa-automation && npm run setup</code>
-          <button class="copy-btn" data-copy="cd mundial-qa-automation && npm run setup">העתק</button>
+          <button class="copy-btn" data-copy="cd mundial-qa-automation && npm run setup">Copy</button>
         </div>
       </div>
     </div>
-    <p class="prose"><code>setup</code> משכפל את <code>Mondial2026</code> כ-sibling אוטומטית (אם חסר), ואז מריץ <code>env:up</code> (<code>npm install</code> → <code>docker compose up --build</code> → ניקוי test users). בשונה מהקובץ האחד למעלה, <b>לא פותח דפדפן אוטומטית</b> בסוף — נכנסים ידנית ל-<a href="http://localhost:8080" target="_blank" rel="noopener">localhost:8080</a> אחרי שהריצה מסתיימת (חוזרת שורת פקודה ריקה).</p>
+    <p class="prose"><code>setup</code> clones <code>Mondial2026</code> as a sibling automatically (if it's missing), then runs <code>env:up</code> (<code>npm install</code> → <code>docker compose up --build</code> → cleans up test users). Unlike the one-file option above, it <b>doesn't open a browser automatically</b> — once it finishes (you get an empty prompt back), open <a href="http://localhost:8080" target="_blank" rel="noopener">localhost:8080</a> yourself.</p>
   </div>
 
   <div class="section">
-    <div class="section-head"><h2>מה זה מרים</h2></div>
+    <div class="section-head"><h2>What this brings up</h2></div>
     <table class="specs">
       <tr><td>app</td><td>localhost:8080</td></tr>
       <tr><td>gateway</td><td>localhost:8000 (nginx, /rest/v1 prefix)</td></tr>
-      <tr><td>rest</td><td>localhost:3000 (PostgREST, ישיר)</td></tr>
+      <tr><td>rest</td><td>localhost:3000 (PostgREST, direct)</td></tr>
       <tr><td>db</td><td>localhost:55432 (Postgres 17 + pg-safeupdate)</td></tr>
     </table>
   </div>
 
   <div class="section">
-    <div class="section-head"><span class="tag">אופציונלי</span><h2>בדיקות</h2></div>
+    <div class="section-head"><span class="tag">optional</span><h2>Tests</h2></div>
     <div class="term">
       <div class="term-bar"><span></span><span></span><span></span></div>
       <div class="term-lines">
         <div class="term-line">
           <span class="num">1</span>
           <code>docker compose --env-file .env.docker run --rm tests</code>
-          <button class="copy-btn" data-copy="docker compose --env-file .env.docker run --rm tests">העתק</button>
+          <button class="copy-btn" data-copy="docker compose --env-file .env.docker run --rm tests">Copy</button>
         </div>
       </div>
     </div>
-    <p class="prose">41 טסטים (Playwright) — UI, API, SQL. ~20 שנ'. <code>41 passed</code> בסוף = תקין.</p>
+    <p class="prose">41 tests (Playwright) — UI, API, SQL. ~20s. <code>41 passed</code> at the end means it's all good.</p>
   </div>
 
   <div class="section">
-    <div class="section-head"><span class="tag">אופציונלי</span><h2>הסרה</h2></div>
+    <div class="section-head"><span class="tag">optional</span><h2>Uninstall</h2></div>
 
     <div class="os-panel" data-os-panel="win">
       <div class="term">
@@ -334,7 +332,7 @@
           <div class="term-line">
             <span class="num">1</span>
             <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.bat" target="_blank" rel="noopener">uninstall.bat →</a>
-            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.bat">קישור</button>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.bat">Link</button>
           </div>
         </div>
       </div>
@@ -346,18 +344,18 @@
           <div class="term-line">
             <span class="num">1</span>
             <a href="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.command" target="_blank" rel="noopener">uninstall.command →</a>
-            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.command">קישור</button>
+            <button class="copy-btn" data-copy="https://raw.githubusercontent.com/PashaGend/mundial-qa-automation/main/uninstall.command">Link</button>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="prose">שמירה — אותו <code>Ctrl+S</code>/<code>Cmd+S</code> כמו קובץ ההתקנה, לוודא סיומת מדויקת. שומרים <b>באותה תיקייה</b> כמו קובץ ההתקנה. מוריד containers/volumes/images של הפרויקט + את קבצי ה-install/uninstall עצמם (כולל את עצמו). שואל לפני מחיקת התיקיות. לא נוגע ב-Git/Node/Docker עצמם.</p>
+    <p class="prose">Saving — same <code>Ctrl+S</code>/<code>Cmd+S</code> as the installer, make sure the extension is exact. Save it in the <b>same folder</b> as the installer. Removes the project's containers/volumes/images plus the install/uninstall files themselves (including itself). Asks before deleting the folders. Doesn't touch Git/Node/Docker themselves.</p>
   </div>
 
   <div class="footnote">
-    <code>docker compose down</code> — עצירה זמנית, בלי מחיקה. <code>npm run status</code> — בודק שבאמת הכל רץ (לא מניח).<br>
-    פירוט ארכיטקטורה, CI/CD, branch protection, AI bug filing — ב-<a href="https://github.com/PashaGend/mundial-qa-automation" target="_blank" rel="noopener">README</a>.
+    <code>docker compose down</code> — temporary stop, no deletion. <code>npm run status</code> — actually checks everything is running (doesn't assume).<br>
+    Architecture, CI/CD, branch protection, AI bug filing — in the <a href="https://github.com/PashaGend/mundial-qa-automation" target="_blank" rel="noopener">README</a>.
   </div>
 
 </div>
@@ -389,7 +387,7 @@
         document.body.removeChild(ta);
       }
       const original = btn.textContent;
-      btn.textContent = 'הועתק!';
+      btn.textContent = 'Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
     });
