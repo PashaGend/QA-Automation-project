@@ -125,7 +125,7 @@ docker compose --env-file .env.docker run --rm tests
 **Check it's up**: `npm run status` &middot; **Reset**: `docker compose down -v --remove-orphans`
 &middot; **Uninstall**: `installers/uninstall.bat` / `installers/uninstall.command`
 
-Needs Docker Desktop + Node.js, nothing else. Every command, explained: **[Full setup guide](https://claude.ai/artifact/HwGUnJ2riepNMhRY8PgrQe)**.
+Needs Docker Desktop + Node.js, nothing else. Every command, explained: **[Full setup guide](https://pashagend.github.io/QA-Automation-project/guide.html)**.
 
 ## 🔄 CI/CD
 
