@@ -26,17 +26,15 @@ surfaced, AI-assisted bug triage). Needs to be shared with you first if you're n
 
 ## 🏗 Architecture
 
-**The stack under test** — four containers, one command:
+**The stack under test** — four containers, one command, brought up top to bottom:
 
 ```mermaid
-flowchart LR
+flowchart TD
     DB[("🗄️ db<br/>Postgres 17")] --> REST["🔌 rest<br/>PostgREST"]
     REST --> GW["🌉 gateway<br/>nginx"]
     GW --> WEB["🖥️ web<br/>Mondial2026 app"]
-    TESTS(["🎭 tests<br/>Playwright"]) -.-> WEB
-    TESTS -.-> REST
-    TESTS -.-> DB
-    LOAD(["📈 load<br/>k6 (optional)"]) -.-> GW
+    TESTS(["🎭 tests<br/>Playwright — UI · API · SQL"]) --> WEB
+    LOAD(["📈 load<br/>k6 — optional"]) --> GW
 
     classDef store fill:#1f2333,stroke:#34d399,stroke-width:2px,color:#eef1f7;
     classDef svc fill:#171a28,stroke:#6a7179,stroke-width:1px,color:#eef1f7;
@@ -49,13 +47,13 @@ flowchart LR
 **The CI/CD gate** — what happens on every push:
 
 ```mermaid
-flowchart LR
+flowchart TD
     PUSH(["👤 git push / PR"]) --> CI["🚀 GitHub Actions"]
     CI --> RUN["🎭 run the suite<br/>UI · API · SQL"]
     RUN --> GATE{{"✅ all green?"}}
     GATE -->|yes| MAIN[("🔀 main")]
-    GATE -->|no| JIRA["🪲 Jira bug<br/>AI-drafted"]
     MAIN --> NETLIFY["☁️ Netlify deploy"]
+    GATE -->|no| JIRA["🪲 Jira bug<br/>AI-drafted"]
 
     classDef pass fill:#11261c,stroke:#34d399,stroke-width:2px,color:#34d399;
     classDef fail fill:#2a1810,stroke:#f0934b,stroke-width:2px,color:#f0934b;
